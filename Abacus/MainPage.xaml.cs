@@ -31,13 +31,22 @@ namespace Abacus
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             //Variables
             long longAdd1 = 0, longAdd2 = 0;
-            string strNarrativesXml = "/Users/James/Documents/AbucusNarratives.xml";
-            XmlDocument xmlDoc = new XmlDocument();
+            string strResponse;
 
-            //xmlDoc.Load(strNarrativesXml);
+            //Gather inputs
+            longAdd1 = long.Parse(InputNumber1.Text);
+            longAdd2 = long.Parse(InputNumber2.Text);
 
+            //Determine the larger input value
+            //Console.WriteLine($"" + Math.Max(longAdd1, longAdd2) + " is the larger number. We will display this first.\n");
+            //Soroban.ShowValueOnSoroban(Math.Max(longAdd1, longAdd2));
+            DisplayTextBox.Text = "";
+            DisplayTextBox.Text = Math.Max(longAdd1, longAdd2) + " is the larger number. We will display this first.\n";
+
+            /*
             if (R1C1.Visibility == Visibility.Visible)
             {
                 R1C1.Visibility = Visibility.Collapsed;
@@ -46,6 +55,7 @@ namespace Abacus
             {
                 R1C1.Visibility = Visibility.Visible;
             }
+            */
         }
     }
 }
