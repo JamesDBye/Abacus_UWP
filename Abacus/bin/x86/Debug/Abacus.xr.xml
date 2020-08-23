@@ -53,6 +53,7 @@
       <RootProperty Name="Stroke" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="Fill" />
+      <RootProperty Name="Visibility" />
     </RootType>
     <RootType FullName="Abacus.MainPage" />
   </Roots.RootTypes>
