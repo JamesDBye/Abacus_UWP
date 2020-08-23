@@ -52,8 +52,8 @@
         <TextBox x:Name="DisplayTextBox" Grid.ColumnSpan="16" Grid.Column="5" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="11" Text="Instructions" TextWrapping="Wrap" VerticalAlignment="Center" Height="113" Width="950"/>
         <TextBlock x:Name="Input1Label" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" Text="Number #1 :" TextWrapping="Wrap" VerticalAlignment="Center"/>
         <TextBlock x:Name="Input1Labe2" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" Text="Number #2 :" TextWrapping="Wrap" VerticalAlignment="Center"/>
-        <TextBox x:Name="InputNumber1"  Grid.Column="3" HorizontalAlignment="Center" Grid.Row="2"  Text="Type here" TextWrapping="Wrap" VerticalAlignment="Center" Height="60" Width="177"/>
-        <TextBox x:Name="InputNumber2"  Grid.Column="3" HorizontalAlignment="Center" Grid.Row="4"  Text="Type here" TextWrapping="Wrap" VerticalAlignment="Center" Height="60" Width="177"/>
+        <TextBox x:Name="InputNumber1"  Grid.Column="3" HorizontalAlignment="Center" Grid.Row="2"  Text="" TextWrapping="Wrap" VerticalAlignment="Center" Height="60" Width="177"/>
+        <TextBox x:Name="InputNumber2"  Grid.Column="3" HorizontalAlignment="Center" Grid.Row="4"  Text="" TextWrapping="Wrap" VerticalAlignment="Center" Height="60" Width="177"/>
         <Ellipse Grid.ColumnSpan="1" Grid.Column="9" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="1" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
         <Ellipse Grid.ColumnSpan="1" Grid.Column="10" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="1" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
         <Ellipse Grid.ColumnSpan="1" Grid.Column="11" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="1" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
@@ -65,7 +65,7 @@
         <Ellipse Grid.ColumnSpan="1" Grid.Column="17" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="1" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
         <Ellipse Grid.ColumnSpan="1" Grid.Column="18" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="1" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
         <Ellipse Grid.ColumnSpan="1" Grid.Column="19" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="1" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
-        <Ellipse Grid.ColumnSpan="1" Grid.Column="20" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="1" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
+        <Ellipse x:Name="RH1C1" Grid.ColumnSpan="1" Grid.Column="20" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="1" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
 																																								 
         <Ellipse Grid.ColumnSpan="1" Grid.Column="9" HorizontalAlignment="Center" Height="30" Width="30"  Grid.Row="2" Stroke="Black" VerticalAlignment="Center" Fill="Black" Visibility="Collapsed"/>
         <Ellipse Grid.ColumnSpan="1" Grid.Column="10" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="2" Stroke="Black" VerticalAlignment="Center" Fill="Black" Visibility="Collapsed"/>
@@ -78,7 +78,7 @@
         <Ellipse Grid.ColumnSpan="1" Grid.Column="17" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="2" Stroke="Black" VerticalAlignment="Center" Fill="Black" Visibility="Collapsed"/>
         <Ellipse Grid.ColumnSpan="1" Grid.Column="18" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="2" Stroke="Black" VerticalAlignment="Center" Fill="Black" Visibility="Collapsed"/>
         <Ellipse Grid.ColumnSpan="1" Grid.Column="19" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="2" Stroke="Black" VerticalAlignment="Center" Fill="Black" Visibility="Collapsed"/>
-        <Ellipse Grid.ColumnSpan="1" Grid.Column="20" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="2" Stroke="Black" VerticalAlignment="Center" Fill="Black" Visibility="Collapsed"/>
+        <Ellipse x:Name="RH2C1" Grid.ColumnSpan="1" Grid.Column="20" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="2" Stroke="Black" VerticalAlignment="Center" Fill="Black" Visibility="Visible"/>
 																																								 
         <Ellipse Grid.ColumnSpan="1" Grid.Column="9" HorizontalAlignment="Center" Height="30" Width="30"  Grid.Row="4" Stroke="Black" VerticalAlignment="Center" Fill="Black" Visibility="Collapsed"/>
         <Ellipse Grid.ColumnSpan="1" Grid.Column="10" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="4" Stroke="Black" VerticalAlignment="Center" Fill="Black" Visibility="Collapsed"/>
@@ -91,7 +91,7 @@
         <Ellipse Grid.ColumnSpan="1" Grid.Column="17" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="4" Stroke="Black" VerticalAlignment="Center" Fill="Black" Visibility="Collapsed"/>
         <Ellipse Grid.ColumnSpan="1" Grid.Column="18" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="4" Stroke="Black" VerticalAlignment="Center" Fill="Black" Visibility="Collapsed"/>
         <Ellipse Grid.ColumnSpan="1" Grid.Column="19" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="4" Stroke="Black" VerticalAlignment="Center" Fill="Black" Visibility="Collapsed"/>
-        <Ellipse Grid.ColumnSpan="1" Grid.Column="20" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="4" Stroke="Black" VerticalAlignment="Center" Fill="Black" Visibility="Collapsed"/>
+        <Ellipse x:Name="R5C1" Grid.ColumnSpan="1" Grid.Column="20" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="4" Stroke="Black" VerticalAlignment="Center" Fill="Black" Visibility="Collapsed"/>
 
         <Ellipse Grid.ColumnSpan="1" Grid.Column="9" HorizontalAlignment="Center" Height="30" Width="30"  Grid.Row="5" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
         <Ellipse Grid.ColumnSpan="1" Grid.Column="10" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="5" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
@@ -104,7 +104,7 @@
         <Ellipse Grid.ColumnSpan="1" Grid.Column="17" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="5" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
         <Ellipse Grid.ColumnSpan="1" Grid.Column="18" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="5" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
         <Ellipse Grid.ColumnSpan="1" Grid.Column="19" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="5" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
-        <Ellipse Grid.ColumnSpan="1" Grid.Column="20" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="5" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
+        <Ellipse x:Name="R4C1" Grid.ColumnSpan="1" Grid.Column="20" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="5" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
 
         <Ellipse Grid.ColumnSpan="1" Grid.Column="9" HorizontalAlignment="Center" Height="30" Width="30"  Grid.Row="6" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
         <Ellipse Grid.ColumnSpan="1" Grid.Column="10" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="6" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
@@ -117,7 +117,7 @@
         <Ellipse Grid.ColumnSpan="1" Grid.Column="17" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="6" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
         <Ellipse Grid.ColumnSpan="1" Grid.Column="18" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="6" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
         <Ellipse Grid.ColumnSpan="1" Grid.Column="19" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="6" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
-        <Ellipse Grid.ColumnSpan="1" Grid.Column="20" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="6" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
+        <Ellipse x:Name="R3C1" Grid.ColumnSpan="1" Grid.Column="20" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="6" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
 
         <Ellipse Grid.ColumnSpan="1" Grid.Column="9" HorizontalAlignment="Center" Height="30" Width="30"  Grid.Row="7" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
         <Ellipse Grid.ColumnSpan="1" Grid.Column="10" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="7" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>

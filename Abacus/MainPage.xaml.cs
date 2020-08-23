@@ -35,31 +35,77 @@ namespace Abacus
 
             //Variables
             long longAdd1 = 0, longAdd2 = 0;
-            string strResponse;
-
+            
             void ShowValueOnSoroban(long pValue)
             {
                 //declare variables
-                string strMaxInput = pValue.ToString();
-                int[] arrNumsLarge = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-                string strBead;
 
-                // Put each digit of pValue into the arrNumsLarge array.
-                // The array represents each column of the soroban.
-                for (int i = 0; i < strMaxInput.Length; i++)
+                //This needs to be changed to toggle the elipse objects visibility
+                //Just start with a single digit number first, eg.7
+                
+                // Heaven beads
+                if (pValue >= 5)
                 {
-                    arrNumsLarge[i + (12 - strMaxInput.Length)] = int.Parse(strMaxInput.Substring(i, 1));
+                    RH2C1.Visibility = Visibility.Visible;
+                    RH1C1.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    RH2C1.Visibility = Visibility.Collapsed;
+                    RH1C1.Visibility = Visibility.Visible;
+                }
+                // Earth beads
+                switch (pValue)
+                {
+                    case 0:
+                    case 5:
+                        R1C1.Visibility = Visibility.Visible;
+                        R2C1.Visibility = Visibility.Visible;
+                        R3C1.Visibility = Visibility.Visible;
+                        R4C1.Visibility = Visibility.Visible;
+                        R5C1.Visibility = Visibility.Collapsed;
+                        break;
+                    case 1:
+                    case 6:
+                        R1C1.Visibility = Visibility.Visible;
+                        R2C1.Visibility = Visibility.Visible;
+                        R3C1.Visibility = Visibility.Visible;
+                        R4C1.Visibility = Visibility.Collapsed;
+                        R5C1.Visibility = Visibility.Visible;
+                        break;
+                    case 2:
+                    case 7:
+                        R1C1.Visibility = Visibility.Visible;
+                        R2C1.Visibility = Visibility.Visible;
+                        R3C1.Visibility = Visibility.Collapsed;
+                        R4C1.Visibility = Visibility.Visible;
+                        R5C1.Visibility = Visibility.Visible;
+                        break;
+                    case 3:
+                    case 8:
+                        R1C1.Visibility = Visibility.Visible;
+                        R2C1.Visibility = Visibility.Collapsed;
+                        R3C1.Visibility = Visibility.Visible;
+                        R4C1.Visibility = Visibility.Visible;
+                        R5C1.Visibility = Visibility.Visible;
+                        break;
+                    case 4:
+                    case 9:
+                        R1C1.Visibility = Visibility.Collapsed;
+                        R2C1.Visibility = Visibility.Visible;
+                        R3C1.Visibility = Visibility.Visible;
+                        R4C1.Visibility = Visibility.Visible;
+                        R5C1.Visibility = Visibility.Visible;
+                        break;
+                    default:
+                        R1C1.Visibility = Visibility.Collapsed;
+                        R2C1.Visibility = Visibility.Collapsed;
+                        R3C1.Visibility = Visibility.Collapsed;
+                        R4C1.Visibility = Visibility.Collapsed;
+                        R5C1.Visibility = Visibility.Collapsed;
+                        break;
                 }
 
-                //Does heaven bead(5) appear in top row
-                for (int i = 0; i < arrNumsLarge.Length; i++)
-                {
-                    // Shorthand IF-THEN-ELSE  = (condition) ? expressionTrue :  expressionFalse;
-                    Console.Write($" " + ((arrNumsLarge[i] >= 5) ? "|" : "O"));
-
-                    //This needs to be changed to toggle the elipse objects visibility
-
-                }
             }
 
             //Gather inputs
