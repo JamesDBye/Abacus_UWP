@@ -55,6 +55,14 @@
       <RootProperty Name="Fill" />
       <RootProperty Name="Visibility" />
     </RootType>
+    <RootType FullName="Windows.UI.Xaml.Shapes.Rectangle">
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Stroke" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="StrokeThickness" />
+    </RootType>
     <RootType FullName="Abacus.MainPage" />
   </Roots.RootTypes>
 </Roots>
