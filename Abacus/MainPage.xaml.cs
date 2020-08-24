@@ -51,18 +51,20 @@ namespace Abacus
                     arrNumsLarge[i + (12 - strMaxInput.Length)] = int.Parse(strMaxInput.Substring(i, 1));
                 }
 
-                //Loop through each column, right to left
+                //Loop through each column, left to left
 
-                for (int i = 0; i < strMaxInput.Length; i++)
+                for (int i = 0; i < 12; i++)
                 {
                     //H - Heaven bead, E - Earth bead
-                    H1 = (Ellipse)this.FindName("RH2C" + (12-i).ToString());
-                    H2 = (Ellipse)this.FindName("RH2C" + (12-i).ToString());
-                    E1 = (Ellipse)this.FindName("R1C"  + (12-i).ToString());
-                    E2 = (Ellipse)this.FindName("R2C"  + (12-i).ToString());
-                    E3 = (Ellipse)this.FindName("R3C"  + (12-i).ToString());
-                    E4 = (Ellipse)this.FindName("R4C"  + (12-i).ToString());
-                    E5 = (Ellipse)this.FindName("R5C"  + (12-i).ToString());
+                    //FindName allows you to identify a control by it's name, so you can then programmatically refer to it.
+                    H1 = (Ellipse)this.FindName("R7C" + i.ToString());
+                    H2 = (Ellipse)this.FindName("R6C" + i.ToString());
+                                                         
+                    E1 = (Ellipse)this.FindName("R5C" + i.ToString());
+                    E2 = (Ellipse)this.FindName("R4C" + i.ToString());
+                    E3 = (Ellipse)this.FindName("R3C" + i.ToString());
+                    E4 = (Ellipse)this.FindName("R2C" + i.ToString());
+                    E5 = (Ellipse)this.FindName("R1C" + i.ToString());
 
                     // Heaven beads
                     if (arrNumsLarge[i] >= 5)
@@ -80,13 +82,13 @@ namespace Abacus
                     {
                         case 0:
                         case 5:
-                            E1.Visibility = E2.Visibility = E3.Visibility = E4.Visibility = Visibility.Visible;
-                            E5.Visibility = Visibility.Collapsed;
+                            E2.Visibility = E3.Visibility = E4.Visibility = E5.Visibility = Visibility.Visible;
+                            E1.Visibility = Visibility.Collapsed;
                             break;
                         case 1:
                         case 6:
-                            E1.Visibility = E2.Visibility = E3.Visibility = E5.Visibility = Visibility.Visible;
-                            E4.Visibility = Visibility.Collapsed;
+                            E1.Visibility = E3.Visibility = E4.Visibility = E5.Visibility = Visibility.Visible;
+                            E2.Visibility = Visibility.Collapsed;
                             break;
                         case 2:
                         case 7:
@@ -95,13 +97,13 @@ namespace Abacus
                             break;
                         case 3:
                         case 8:
-                            E1.Visibility = E3.Visibility = E4.Visibility = E5.Visibility = Visibility.Visible;
-                            E2.Visibility = Visibility.Collapsed;
+                            E1.Visibility = E2.Visibility = E3.Visibility = E5.Visibility = Visibility.Visible;
+                            E4.Visibility = Visibility.Collapsed;
                             break;
                         case 4:
                         case 9:
-                            E2.Visibility = E3.Visibility = E4.Visibility = E5.Visibility = Visibility.Visible;
-                            E1.Visibility = Visibility.Collapsed;
+                            E1.Visibility = E2.Visibility = E3.Visibility = E4.Visibility = Visibility.Visible;
+                            E5.Visibility = Visibility.Collapsed;
                             break;
                         default:
                             E1.Visibility = E2.Visibility = E3.Visibility = E4.Visibility = E5.Visibility = Visibility.Collapsed;
