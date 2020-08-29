@@ -29,10 +29,32 @@ namespace Abacus
     /// </summary>
     public sealed partial class MainPage : Page
     {
+		private DispatcherTimer timer;
+        private int basetime;
+		
         public MainPage()
         {
             this.InitializeComponent();
+			
+			timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.Tick += timer_Tick;
         }
+
+        void timer_Tick(object sender, object e)
+        {
+            basetime = basetime - 1;
+            //txt.Text = basetime.ToString();
+            if (basetime == 0)
+            {
+                timer.Stop();
+            }
+        }
+
+        //protected override void OnNavigatedTo(NavigationEventArgs e)
+        //{
+
+        //}
 
         public static string StrNarrAdd(int intLarge, int intSmall)
         {
@@ -109,7 +131,6 @@ namespace Abacus
                     case 7:
                         E1.Visibility = E2.Visibility = E4.Visibility = E5.Visibility = Visibility.Visible;
                         E3.Visibility = Visibility.Collapsed;
-                        //E2.Fill = "Black"; -- should be easy, it's not
                         break;
                     case 3:
                     case 8:
@@ -147,7 +168,7 @@ namespace Abacus
         {
             string strPause = "";
             int[] pArrLarge = LongToArray(longLarge);
-            int[] pArrSmall = LongToArray(longSmall); ;
+            int[] pArrSmall = LongToArray(longSmall);
 
             for (int i = 0; i < 12; i++)
             {
@@ -230,7 +251,13 @@ namespace Abacus
                     //StorageFile file = await fp.PickSingleFileAsync();
                     DisplayTextBox.Text += ($"\nAdd the " + pArrSmall[i] + " on the #" + (12 - i) + " column");
                     DisplayTextBox.Text += strPause;
-                    //_ = Console.Read().ToString();// need some sort of pause here, or better, for the user to click something to continue.
+                    // need some sort of pause here, or better, for the user to click something to continue.
+
+                    // start of timer stuff , doesn't work how i want it to.
+                    DisplayTextBox.Text += "\n... waiting 10 seconds ...";
+                    basetime = 10;
+					timer.Start();
+					// end of timer stuff
                     ShowValueOnSoroban(ArrayToLong(pArrLarge)); 
                 }
             }
@@ -242,7 +269,6 @@ namespace Abacus
             //Variables
             long longAdd1 = 0, longAdd2 = 0;
             
-
             //Gather inputs
             longAdd1 = long.Parse(InputNumber1.Text);
             longAdd2 = long.Parse(InputNumber2.Text);
@@ -268,6 +294,7 @@ namespace Abacus
 
             AddTwoLongs(Math.Max(longAdd1, longAdd2), Math.Min(longAdd1, longAdd2));
         }
+
     }
 
 }
