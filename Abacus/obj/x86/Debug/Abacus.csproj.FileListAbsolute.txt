@@ -10,7 +10,6 @@ C:\Users\James\source\repos\Abacus2\Abacus\bin\x86\Debug\Core\AppxManifest.xml
 C:\Users\James\source\repos\Abacus2\Abacus\bin\x86\Debug\Abacus.build.appxrecipe
 C:\Users\James\source\repos\Abacus2\Abacus\bin\x86\Debug\System.Runtime.dll
 C:\Users\James\source\repos\Abacus2\Abacus\bin\x86\Debug\Microsoft.UI.Xaml.Markup.winmd
-C:\Users\James\source\repos\Abacus2\Abacus\obj\x86\Debug\Abacus.csprojAssemblyReference.cache
 C:\Users\James\source\repos\Abacus2\Abacus\obj\x86\Debug\App.g.i.cs
 C:\Users\James\source\repos\Abacus2\Abacus\obj\x86\Debug\App.g.cs
 C:\Users\James\source\repos\Abacus2\Abacus\obj\x86\Debug\MainPage.g.i.cs
@@ -43,3 +42,4 @@ C:\Users\James\source\repos\Abacus2\Abacus\obj\x86\Debug\qualifiers.txt.intermed
 C:\Users\James\source\repos\Abacus2\Abacus\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt
 C:\Users\James\source\repos\Abacus2\Abacus\obj\x86\Debug\ProjectArchitectures.txt
 C:\Users\James\source\repos\Abacus2\Abacus\obj\x86\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_636885274160000000.json
+C:\Users\James\source\repos\Abacus2\Abacus\obj\x86\Debug\Abacus.csprojAssemblyReference.cache
