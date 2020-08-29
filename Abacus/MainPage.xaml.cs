@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Windows;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -36,8 +37,8 @@ namespace Abacus
         public static string StrNarrAdd(int intLarge, int intSmall)
         {
             string strTemp;
-            strTemp = "(Can't add " + intSmall + " to " + Convert.ToString(intLarge - intSmall);
-            strTemp += "\n so minus " + (10 - intSmall) + " and add 1 to the left column)\n";
+            strTemp = " (can't add " + intSmall + " to " + Convert.ToString(intLarge - intSmall);
+            strTemp += " so minus " + (10 - intSmall) + " and add 1 to the left column)\n";
             return strTemp;
         }
 
@@ -108,6 +109,7 @@ namespace Abacus
                     case 7:
                         E1.Visibility = E2.Visibility = E4.Visibility = E5.Visibility = Visibility.Visible;
                         E3.Visibility = Visibility.Collapsed;
+                        //E2.Fill = "Black"; -- should be easy, it's not
                         break;
                     case 3:
                     case 8:
@@ -226,7 +228,7 @@ namespace Abacus
                 if (boolSmallIsZero == false)
                 {
                     //StorageFile file = await fp.PickSingleFileAsync();
-                    DisplayTextBox.Text += ($"Add the " + pArrSmall[i] + " on the #" + (12 - i) + " column");
+                    DisplayTextBox.Text += ($"\nAdd the " + pArrSmall[i] + " on the #" + (12 - i) + " column");
                     DisplayTextBox.Text += strPause;
                     //_ = Console.Read().ToString();// need some sort of pause here, or better, for the user to click something to continue.
                     ShowValueOnSoroban(ArrayToLong(pArrLarge)); 
