@@ -29,32 +29,11 @@ namespace Abacus
     /// </summary>
     public sealed partial class MainPage : Page
     {
-		private DispatcherTimer timer;
-        private int basetime;
 		
         public MainPage()
         {
             this.InitializeComponent();
-			
-			timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 1);
-            timer.Tick += timer_Tick;
         }
-
-        void timer_Tick(object sender, object e)
-        {
-            basetime = basetime - 1;
-            //txt.Text = basetime.ToString();
-            if (basetime == 0)
-            {
-                timer.Stop();
-            }
-        }
-
-        //protected override void OnNavigatedTo(NavigationEventArgs e)
-        //{
-
-        //}
 
         public static string StrNarrAdd(int intLarge, int intSmall)
         {
@@ -251,17 +230,14 @@ namespace Abacus
                     //StorageFile file = await fp.PickSingleFileAsync();
                     DisplayTextBox.Text += ($"\nAdd the " + pArrSmall[i] + " on the #" + (12 - i) + " column");
                     DisplayTextBox.Text += strPause;
-                    // need some sort of pause here, or better, for the user to click something to continue.
 
-                    // start of timer stuff , doesn't work how i want it to.
+                    // need some sort of pause here, or better, for the user to click something to continue.
+                    // Introduce a delay....
                     DisplayTextBox.Text += "\n... waiting 10 seconds ...";
-                    basetime = 10;
-					timer.Start();
-					// end of timer stuff
                     ShowValueOnSoroban(ArrayToLong(pArrLarge)); 
                 }
             }
-            DisplayTextBox.Text += ($"Final answer: " + ArrayToLong(pArrLarge));
+            DisplayTextBox.Text += ($"\nFinal answer: " + ArrayToLong(pArrLarge));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -281,12 +257,9 @@ namespace Abacus
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            //Variables
-            long longAdd1 = 0, longAdd2 = 0;
-
-            //Gather inputs
-            longAdd1 = long.Parse(InputNumber1.Text);
-            longAdd2 = long.Parse(InputNumber2.Text);
+            //declare and Gather inputs
+            long longAdd1 = long.Parse(InputNumber1.Text);
+            long longAdd2 = long.Parse(InputNumber2.Text);
 
             //Determine the larger input value
             DisplayTextBox.Text = "";
