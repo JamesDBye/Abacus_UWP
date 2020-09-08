@@ -250,31 +250,69 @@ namespace Abacus
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Variables
-            long longAdd1 = 0, longAdd2 = 0;
-            
-            //Gather inputs
-            longAdd1 = long.Parse(InputNumber1.Text);
-            longAdd2 = long.Parse(InputNumber2.Text);
+            try
+            {
+                //Variables
+                long longAdd1 = 0, longAdd2 = 0;
 
-            //Determine the larger input value
-            DisplayTextBox.Text = "";
-            DisplayTextBox.Text = Math.Max(longAdd1, longAdd2) + " is the larger number. We will display this first.";
-            ShowValueOnSoroban(Math.Max(longAdd1, longAdd2));
+                //Gather inputs
+                longAdd1 = long.Parse(InputNumber1.Text);
+                longAdd2 = long.Parse(InputNumber2.Text);
+
+                if (longAdd1 < 0 || longAdd2 < 0)
+                {
+                    throw new FormatException("Input less than zero");
+                }
+                if (longAdd1 > 999999999999 || longAdd2 > 999999999999)
+                {
+                    throw new FormatException("Input exceeds Soroban maximum value");
+                }
+                //Determine the larger input value
+                DisplayTextBox.Text = "";
+                DisplayTextBox.Text = Math.Max(longAdd1, longAdd2) + " is the larger number. We will display this first.";
+                ShowValueOnSoroban(Math.Max(longAdd1, longAdd2));
+            }
+            catch(FormatException fEx)
+            {
+                DisplayTextBox.Text = "Error: " + fEx.Message;
+            }
+            catch (Exception)
+            {
+                DisplayTextBox.Text = "Input needs to be an integer between zero and 999999999999\n";
+            }
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             //declare and Gather inputs
-            long longAdd1 = long.Parse(InputNumber1.Text);
-            long longAdd2 = long.Parse(InputNumber2.Text);
+            try
+            {
+                long longAdd1 = long.Parse(InputNumber1.Text);
+                long longAdd2 = long.Parse(InputNumber2.Text);
 
-            //Determine the larger input value
-            DisplayTextBox.Text = "";
-            DisplayTextBox.Text = Math.Max(longAdd1, longAdd2) + " is the larger number. We display this first, and add the smaller number to it.";
-            AddTwoLongsAsync(Math.Max(longAdd1, longAdd2), Math.Min(longAdd1, longAdd2));
+                if (longAdd1 < 0 || longAdd2 < 0)
+                {
+                    throw new FormatException("Input less than zero");
+                }
+                if (longAdd1 > 999999999999 || longAdd2 > 999999999999)
+                {
+                    throw new FormatException("Input exceeds Soroban maximum value");
+                }
+
+                //Determine the larger input value
+                DisplayTextBox.Text = "";
+                DisplayTextBox.Text = Math.Max(longAdd1, longAdd2) + " is the larger number. We display this first, and add the smaller number to it.";
+                AddTwoLongsAsync(Math.Max(longAdd1, longAdd2), Math.Min(longAdd1, longAdd2));
+            }
+            catch (FormatException fEx)
+            {
+                DisplayTextBox.Text = "Error: " + fEx.Message;
+            }
+            catch (Exception)
+            {
+                DisplayTextBox.Text = "Input needs to be an integer between zero and 999999999999\n";
+            }
         }
-
     }
 
 }
