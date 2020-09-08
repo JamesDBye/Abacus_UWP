@@ -48,14 +48,14 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Button x:ConnectionId='2' x:Name="CalculateButton" Content="DisplayLarge" Grid.Column="3" Grid.Row="10" Height="45" Width="177" HorizontalAlignment="Center"                     />
+        <Button x:ConnectionId='2' x:Name="CalculateButton" Content="Display Largest #" Grid.Column="3" Grid.Row="10" Height="45" Width="177" HorizontalAlignment="Center"                     />
         <Button x:ConnectionId='3' x:Name="AddButton"       Content="Addition"    Grid.Column="3" Grid.Row="9" Height="45" Width="177" HorizontalAlignment="Center"                  />
         <TextBox x:ConnectionId='4' x:Name="DisplayTextBox" Grid.ColumnSpan="16"  Grid.RowSpan="2" Grid.Column="5" HorizontalAlignment="Stretch"  Grid.Row="10" Text="Instructions" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
         <TextBlock x:ConnectionId='5' x:Name="Input1Label" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" Text="Number #1 :" TextWrapping="Wrap" VerticalAlignment="Center"/>
         <TextBlock x:ConnectionId='6' x:Name="Input1Labe2" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" Text="Number #2 :" TextWrapping="Wrap" VerticalAlignment="Center"/>
 
-        <TextBox x:ConnectionId='7' x:Name="InputNumber1" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="" TextWrapping="Wrap"/>
-        <TextBox x:ConnectionId='8' x:Name="InputNumber2" Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="" TextWrapping="Wrap"/>
+        <TextBox x:ConnectionId='7' x:Name="InputNumber1" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="0" TextWrapping="Wrap"/>
+        <TextBox x:ConnectionId='8' x:Name="InputNumber2" Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Text="0" TextWrapping="Wrap"/>
         <Ellipse x:ConnectionId='9' x:Name="R7C0" Grid.ColumnSpan="1" Grid.Column="9" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="1" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
         <Ellipse x:ConnectionId='10' x:Name="R7C1" Grid.ColumnSpan="1" Grid.Column="10" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="1" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
         <Ellipse x:ConnectionId='11' x:Name="R7C2" Grid.ColumnSpan="1" Grid.Column="11" HorizontalAlignment="Center" Height="30" Width="30" Grid.Row="1" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
