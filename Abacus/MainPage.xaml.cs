@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Shapes;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
+using Windows.UI.Popups;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -143,11 +144,16 @@ namespace Abacus
             return arrNumsLarge;
         }
 
-        public void AddTwoLongs(long longLarge, long longSmall) // removed static keyword, as it wouldn't work until removed.
+        public async Task AddTwoLongsAsync(long longLarge, long longSmall) // removed static keyword, as it wouldn't work until removed.
         {
             string strPause = "";
             int[] pArrLarge = LongToArray(longLarge);
             int[] pArrSmall = LongToArray(longSmall);
+
+            ShowValueOnSoroban(longLarge);
+
+            MessageDialog msgLargest = new MessageDialog("Click Close button after you have reviewed the change on screen");
+            await msgLargest.ShowAsync();
 
             for (int i = 0; i < 12; i++)
             {
@@ -233,7 +239,9 @@ namespace Abacus
 
                     // need some sort of pause here, or better, for the user to click something to continue.
                     // Introduce a delay....
-                    DisplayTextBox.Text += "\n... waiting 10 seconds ...";
+                    MessageDialog msg = new MessageDialog("Click Close button after you have reviewed the change on screen");
+                    await msg.ShowAsync();
+
                     ShowValueOnSoroban(ArrayToLong(pArrLarge)); 
                 }
             }
@@ -264,8 +272,7 @@ namespace Abacus
             //Determine the larger input value
             DisplayTextBox.Text = "";
             DisplayTextBox.Text = Math.Max(longAdd1, longAdd2) + " is the larger number. We display this first, and add the smaller number to it.";
-
-            AddTwoLongs(Math.Max(longAdd1, longAdd2), Math.Min(longAdd1, longAdd2));
+            AddTwoLongsAsync(Math.Max(longAdd1, longAdd2), Math.Min(longAdd1, longAdd2));
         }
 
     }
