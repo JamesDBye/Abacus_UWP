@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Users\James\source\repos\Abacus2\Abacus\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>B03AB877B2323A09F4383B374258472DF30C0A8FB2CA0195C1532359B1B9B694</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>47EAED5C9BBBB418697C5FCBDFAB0120D949F937E0756BCA611F3934E423AD39</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>9a40a45a-de47-406a-8a9a-8a427c23c14e_1.0.0.0_x86__gd9wj2p7c52jg</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>9a40a45a-de47-406a-8a9a-8a427c23c14e_gd9wj2p7c52jg!App</RegisteredUserModeAppID>
     <RegisteredPackageID>9a40a45a-de47-406a-8a9a-8a427c23c14e</RegisteredPackageID>
@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\James\source\repos\Abacus2\Abacus\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-08-30T10:37:32.355</Modified>
+      <Modified>2020-09-08T19:54:50.226</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\James\source\repos\Abacus2\Abacus\bin\x86\Debug\Abacus.exe">
       <PackagePath>entrypoint\Abacus.exe</PackagePath>
-      <Modified>2020-08-30T10:37:31.218</Modified>
+      <Modified>2020-09-08T19:54:49.362</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\6.2.10\runtimes\win10-x86\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
@@ -90,11 +90,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\James\source\repos\Abacus2\Abacus\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2020-08-30T10:33:53.174</Modified>
+      <Modified>2020-09-08T19:54:49.110</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\James\source\repos\Abacus2\Abacus\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2020-08-30T10:33:53.173</Modified>
+      <Modified>2020-09-08T19:54:49.110</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.18362.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -102,11 +102,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\James\source\repos\Abacus2\Abacus\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2020-08-30T10:37:31.487</Modified>
+      <Modified>2020-09-08T19:21:50.900</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\James\source\repos\Abacus2\Abacus\bin\x86\Debug\Core\Abacus.exe">
       <PackagePath>Abacus.exe</PackagePath>
-      <Modified>2020-08-30T10:37:32.343</Modified>
+      <Modified>2020-09-08T19:54:50.210</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
