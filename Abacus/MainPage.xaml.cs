@@ -255,24 +255,23 @@ namespace Abacus
             try
             {
                 //Variables
-                long longAdd1 = 0, longAdd2 = 0;
+                long longAdd1 = 0;
 
                 //Gather inputs
                 longAdd1 = long.Parse(InputNumber1.Text);
-                longAdd2 = long.Parse(InputNumber2.Text);
-
-                if (longAdd1 < 0 || longAdd2 < 0)
+                
+                if (longAdd1 < 0 )
                 {
                     throw new FormatException("Input less than zero");
                 }
-                if (longAdd1 > 999999999999 || longAdd2 > 999999999999)
+                if (longAdd1 > 999999999999 )
                 {
                     throw new FormatException("Input exceeds Soroban maximum value");
                 }
                 //Determine the larger input value
                 DisplayTextBox.Text += "\n";
-                DisplayTextBox.Text += Math.Max(longAdd1, longAdd2) + " is displayed above.";
-                ShowValueOnSoroban(Math.Max(longAdd1, longAdd2));
+                DisplayTextBox.Text += longAdd1 + " is displayed above.";
+                ShowValueOnSoroban(longAdd1);
 
             }
             catch(FormatException fEx)
@@ -308,6 +307,39 @@ namespace Abacus
                 DisplayTextBox.Text += "\nWe add by moving right to left across the abacus.\n";
                 DisplayTextBox.Text += Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Addition/Comment1");
                 AddTwoLongsAsync(Math.Max(longAdd1, longAdd2), Math.Min(longAdd1, longAdd2));
+            }
+            catch (FormatException fEx)
+            {
+                DisplayTextBox.Text = "Error: " + fEx.Message;
+            }
+            catch (Exception)
+            {
+                DisplayTextBox.Text = "Input needs to be an integer between zero and 999999999999\n";
+            }
+        }
+
+        private void Count_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                //Variables
+                long longAdd1 = 0;
+
+                //Gather inputs
+                longAdd1 = long.Parse(InputNumber1.Text);
+
+                if (longAdd1 < 0)
+                {
+                    throw new FormatException("Input less than zero");
+                }
+                if (longAdd1 > 999999999999)
+                {
+                    throw new FormatException("Input exceeds Soroban maximum value");
+                }
+                longAdd1++;
+                InputNumber1.Text = longAdd1.ToString();
+                ShowValueOnSoroban(longAdd1);
+
             }
             catch (FormatException fEx)
             {

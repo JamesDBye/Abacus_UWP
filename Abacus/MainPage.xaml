@@ -60,8 +60,9 @@
         <Rectangle Grid.Column="18" HorizontalAlignment="Center" Grid.Row="1" Stroke="Black" VerticalAlignment="Center" Grid.RowSpan="8" Fill="Gray" MinHeight="20" MinWidth="11" Height="510" Width="10"/>
         <Rectangle Grid.Column="19" HorizontalAlignment="Center" Grid.Row="1" Stroke="Black" VerticalAlignment="Center" Grid.RowSpan="8" Fill="Gray" MinHeight="20" MinWidth="11" Height="510" Width="10"/>
         <Rectangle Grid.Column="20" HorizontalAlignment="Center" Grid.Row="1" Stroke="Black" VerticalAlignment="Center" Grid.RowSpan="8" Fill="Gray" MinHeight="20" MinWidth="11" Height="510" Width="10"/>
-        <Button x:Name="CalculateButton" Content="Display Largest #" Grid.Column="3" Grid.Row="10" Height="45" Width="177" HorizontalAlignment="Center" Click="Button_Click"/>
-        <Button x:Name="AddButton"       Content="Addition"    Grid.Column="3" Grid.Row="9" Height="45" Width="177" HorizontalAlignment="Center" Click="Add_Click"/>
+        <Button x:Name="CalculateButton" Content="Display Number #1" Grid.Column="3" Grid.Row="9"  Height="45" Width="177" HorizontalAlignment="Center" Click="Button_Click"/>
+        <Button x:Name="AddButton"       Content="Add #1 and #2"     Grid.Column="3" Grid.Row="10" Height="45" Width="177" HorizontalAlignment="Center" Click="Add_Click"/>
+        <Button x:Name="CountButton"     Content="Count from #1"     Grid.Column="3" Grid.Row="11" Height="45" Width="177" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Count_Click" />
         <TextBox x:Name="DisplayTextBox" Grid.ColumnSpan="16"  Grid.RowSpan="2" Grid.Column="5" HorizontalAlignment="Stretch"  Grid.Row="10" Text="Instructions" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
         <TextBlock x:Name="Input1Label" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" Text="Number #1 :" TextWrapping="Wrap" VerticalAlignment="Center"/>
         <TextBlock x:Name="Input1Labe2" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" Text="Number #2 :" TextWrapping="Wrap" VerticalAlignment="Center"/>
