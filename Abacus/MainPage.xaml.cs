@@ -34,7 +34,8 @@ namespace Abacus
         public MainPage()
         {
             this.InitializeComponent();
-            DisplayTextBox.Text = "Some start up text.";
+            DisplayTextBox.Text =  Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Introduction/comment1");
+            DisplayTextBox.Text += Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Introduction/More_info");
         }
 
         public static string StrNarrAdd(int intLarge, int intSmall)
@@ -153,9 +154,9 @@ namespace Abacus
 
             ShowValueOnSoroban(longLarge);
 
-            MessageDialog msgLargest = new MessageDialog("Click Close button after you have reviewed the change on screen");
+            MessageDialog msgLargest = new MessageDialog("Hit return after reviewing the change on screen");
             await msgLargest.ShowAsync();
-
+            
             for (int i = 0; i < 12; i++)
             {
                 //whether or not to display this calculation
@@ -254,10 +255,6 @@ namespace Abacus
             try
             {
                 //Variables
-
-                DisplayTextBox.Text = Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Introduction/comment1");
-
-
                 long longAdd1 = 0, longAdd2 = 0;
 
                 //Gather inputs
@@ -274,7 +271,7 @@ namespace Abacus
                 }
                 //Determine the larger input value
                 DisplayTextBox.Text += "\n";
-                DisplayTextBox.Text += Math.Max(longAdd1, longAdd2) + " is the larger number. We will display this first.";
+                DisplayTextBox.Text += Math.Max(longAdd1, longAdd2) + " is displayed above.";
                 ShowValueOnSoroban(Math.Max(longAdd1, longAdd2));
 
             }
@@ -282,10 +279,10 @@ namespace Abacus
             {
                 DisplayTextBox.Text = "Error: " + fEx.Message;
             }
-            //catch (Exception)
-            //{
-            //    DisplayTextBox.Text = "Input needs to be an integer between zero and 999999999999\n";
-            //}
+            catch (Exception)
+            {
+                DisplayTextBox.Text = "Input needs to be an integer between zero and 999999999999\n";
+            }
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -307,7 +304,9 @@ namespace Abacus
 
                 //Determine the larger input value
                 DisplayTextBox.Text = "";
-                DisplayTextBox.Text = Math.Max(longAdd1, longAdd2) + " is the larger number. We display this first, and add the smaller number to it.";
+                DisplayTextBox.Text += "\n" + Math.Max(longAdd1, longAdd2) + " is the larger number. We display this first, and add the smaller number to it.";
+                DisplayTextBox.Text += "\nWe add by moving right to left across the abacus.\n";
+                DisplayTextBox.Text += Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Addition/Comment1");
                 AddTwoLongsAsync(Math.Max(longAdd1, longAdd2), Math.Min(longAdd1, longAdd2));
             }
             catch (FormatException fEx)
