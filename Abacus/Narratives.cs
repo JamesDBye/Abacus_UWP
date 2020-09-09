@@ -38,8 +38,8 @@ namespace Abacus
             
             xstring += "\nThe top bead represents a &#39;5&#39;, and the four beads below represent a &#39;1&#39;. ";
             xstring += "To display &#39;7&#39; in the last column, you would need a &#39;5&#39; above plus &#39;2&#39; below. ";
-            xstring += "&#39;Above&#39; and &#39;below&#39; are sometimes referred to as &#39;Heaven&#39; and &#39;Earth&#39;.\nAt the moment the Soroban is displaying the number zero. To see what the number 123456 would look like, ";
-            xstring += "type 123456 into the #1 box and 0 in the #2 box. Click on the button labelled &#39;Display Largest#&#39; and it will display the larger of the two numbers (123456). Alternatively, click one of the other buttons to see how to perform addition, subtraction or multiplication.";
+            xstring += "&#39;Above&#39; and &#39;below&#39; are sometimes referred to as &#39;Heaven&#39; and &#39;Earth&#39;.\nAt the moment, the Soroban is displaying the number zero. To see what the number 25 would look like, ";
+            xstring += "type 25 into the #1 box and 0 in the #2 box. Click on the button labelled &#39;Display Largest#&#39; and it will display the larger of the two numbers (25). Alternatively, click one of the other buttons to see how to perform addition, subtraction or multiplication.";
             xstring += " </More_info></Introduction><Addition><Comment1>";
             xstring += "When adding numbers on a stick, if the result is greater than 9 you must SUBTRACT a complementary number and add 1 to the stick on the left. [Complementary numbers: 1&amp;9, 2&amp;8, 3&amp;7, 4&amp;6, 5&amp;5, 6&amp;4, 7&amp;3, 8&amp;2, 9&amp;1 ]";
             xstring += "</Comment1><Comment2>";
@@ -61,7 +61,7 @@ namespace Abacus
             xstring += "We need to work out where to place the multiplicand and for this we need to look at how many whole digits are in the multiplier and multiplicand.";
             xstring += "If the multiplicand is 123 and the multiplier is 32, there are 5 whole digits in total. This means we enter the multiplicand 5 columns to the left of the rightmost column.";
             xstring += "</Comment1><Comment2>";
-            xstring += "To multiply two numbers together, we multiply a single digit of the multiplier by a single digit of the multiplicand. We take the product and add it to the right of the multiplicand. We repeat this, going across the multiplier left to right and across the multiplicand right to left.";
+            xstring += "To multiply two numbers together, we multiply a single digit of the multiplier by a single digit of the multiplicand. We take the product and add it to the right of the multiplicand. We repeat this, going across the multiplier left to right and across the multiplicand left to right.";
             xstring += "The products should be dealt with as 2-digit numbers - i.e. 6 is 06, and each product is shifted to the right each time the digit of the multiplier changes.";
             xstring += "It sounds complicated but it isn't. Watch how your example is calculated step by step below. You do need to know your times tables from 2x2 to 9x9 to be able to perform this on a soroban for real :)";
             xstring += "</Comment2></MultiplyTwoLongs></Soroban_Text_Strings></All_Text_Strings>";

@@ -153,7 +153,7 @@ namespace Abacus
             int[] pArrSmall = LongToArray(longSmall);
 
             ShowValueOnSoroban(longLarge);
-
+            
             MessageDialog msgLargest = new MessageDialog("Hit return after reviewing the change on screen");
             await msgLargest.ShowAsync();
             
