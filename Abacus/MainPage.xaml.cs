@@ -34,6 +34,7 @@ namespace Abacus
         public MainPage()
         {
             this.InitializeComponent();
+            DisplayTextBox.Text = "Some start up text.";
         }
 
         public static string StrNarrAdd(int intLarge, int intSmall)
@@ -253,6 +254,10 @@ namespace Abacus
             try
             {
                 //Variables
+
+                DisplayTextBox.Text = Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Introduction/comment1");
+
+
                 long longAdd1 = 0, longAdd2 = 0;
 
                 //Gather inputs
@@ -268,18 +273,19 @@ namespace Abacus
                     throw new FormatException("Input exceeds Soroban maximum value");
                 }
                 //Determine the larger input value
-                DisplayTextBox.Text = "";
-                DisplayTextBox.Text = Math.Max(longAdd1, longAdd2) + " is the larger number. We will display this first.";
+                DisplayTextBox.Text += "\n";
+                DisplayTextBox.Text += Math.Max(longAdd1, longAdd2) + " is the larger number. We will display this first.";
                 ShowValueOnSoroban(Math.Max(longAdd1, longAdd2));
+
             }
             catch(FormatException fEx)
             {
                 DisplayTextBox.Text = "Error: " + fEx.Message;
             }
-            catch (Exception)
-            {
-                DisplayTextBox.Text = "Input needs to be an integer between zero and 999999999999\n";
-            }
+            //catch (Exception)
+            //{
+            //    DisplayTextBox.Text = "Input needs to be an integer between zero and 999999999999\n";
+            //}
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
