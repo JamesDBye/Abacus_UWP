@@ -167,6 +167,19 @@
         <TextBlock Grid.Column="16" HorizontalAlignment="Center" Text="10,000s" TextWrapping="Wrap" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="14" HorizontalAlignment="Center" Text="Mills" TextWrapping="Wrap" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="11" HorizontalAlignment="Center" Text="Bills" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="20" Grid.Row="3" HorizontalAlignment="Center" Text="#1" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="19" Grid.Row="3" HorizontalAlignment="Center" Text="#2" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="18" Grid.Row="3" HorizontalAlignment="Center" Text="#3" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="17" Grid.Row="3" HorizontalAlignment="Center" Text="#4" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="16" Grid.Row="3" HorizontalAlignment="Center" Text="#5" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="15" Grid.Row="3" HorizontalAlignment="Center" Text="#6" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="14" Grid.Row="3" HorizontalAlignment="Center" Text="#7" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="13" Grid.Row="3" HorizontalAlignment="Center" Text="#8" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="12" Grid.Row="3" HorizontalAlignment="Center" Text="#9" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="11" Grid.Row="3" HorizontalAlignment="Center" Text="#10" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="10" Grid.Row="3" HorizontalAlignment="Center" Text="#11" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="9" Grid.Row="3" HorizontalAlignment="Center" Text="#12" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        
     </Grid>
 
 </Page>
