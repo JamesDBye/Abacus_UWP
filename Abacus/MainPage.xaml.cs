@@ -46,6 +46,14 @@ namespace Abacus
             return strTemp;
         }
 
+        private static string StrNarrSubtract(int intLarge, int intSmall)
+        {
+            string strTemp;
+            strTemp = "(Can't subtract " + intSmall + " from " + Convert.ToString(intLarge + intSmall);
+            strTemp += "\n so add " + (10 - intSmall) + " and minus 1 from the left column)";
+            return strTemp;
+        }
+
         public static long ArrayToLong(int[] pArrInts)
         {
             string strCombined = "";
@@ -235,7 +243,6 @@ namespace Abacus
                 // Show each iteration, right to left.
                 if (boolSmallIsZero == false)
                 {
-                    //StorageFile file = await fp.PickSingleFileAsync();
                     DisplayTextBox.Text += ($"\nAdd the " + pArrSmall[i] + " on the #" + (12 - i) + " column");
                     DisplayTextBox.Text += strPause;
 
@@ -243,8 +250,108 @@ namespace Abacus
                     // Introduce a delay....
                     MessageDialog msg = new MessageDialog("Click Close button after you have reviewed the change on screen");
                     await msg.ShowAsync();
-
                     ShowValueOnSoroban(ArrayToLong(pArrLarge)); 
+                }
+            }
+            DisplayTextBox.Text += ($"\nFinal answer: " + ArrayToLong(pArrLarge));
+        }
+
+        public async Task SubtractTwoLongs(long longLarge, long longSmall)
+        {
+            string strPause = "";
+            int[] pArrLarge = LongToArray(longLarge);
+            int[] pArrSmall = LongToArray(longSmall);
+
+            ShowValueOnSoroban(longLarge);
+
+            MessageDialog msgLargest = new MessageDialog("Hit return after reviewing the change on screen");
+            await msgLargest.ShowAsync();
+
+            for (int i = 0; i < 12; i++)
+            {
+                //whether or not to display this calculation
+                bool boolSmallIsZero = (pArrSmall[i] == 0);
+
+                //main logic
+                pArrLarge[i] = pArrLarge[i] - pArrSmall[i];
+
+                //Carry left bead check
+                if (pArrLarge[i] < 0)
+                {
+                    switch (pArrSmall[i])
+                    {
+                        case 1:
+                            strPause = StrNarrSubtract(pArrLarge[i], pArrSmall[i]);
+                            pArrLarge[i] = pArrLarge[i] + pArrSmall[i] + 9;
+                            break;
+                        case 2:
+                            strPause = StrNarrSubtract(pArrLarge[i], pArrSmall[i]);
+                            pArrLarge[i] = pArrLarge[i] + pArrSmall[i] + 8;
+                            break;
+                        case 3:
+                            strPause = StrNarrSubtract(pArrLarge[i], pArrSmall[i]);
+                            pArrLarge[i] = pArrLarge[i] + pArrSmall[i] + 7;
+                            break;
+                        case 4:
+                            strPause = StrNarrSubtract(pArrLarge[i], pArrSmall[i]);
+                            pArrLarge[i] = pArrLarge[i] + pArrSmall[i] + 6;
+                            break;
+                        case 5:
+                            strPause = StrNarrSubtract(pArrLarge[i], pArrSmall[i]);
+                            pArrLarge[i] = pArrLarge[i] + pArrSmall[i] + 5;
+                            break;
+                        case 6:
+                            strPause = StrNarrSubtract(pArrLarge[i], pArrSmall[i]);
+                            pArrLarge[i] = pArrLarge[i] + pArrSmall[i] + 4;
+                            break;
+                        case 7:
+                            strPause = StrNarrSubtract(pArrLarge[i], pArrSmall[i]);
+                            pArrLarge[i] = pArrLarge[i] + pArrSmall[i] + 3;
+                            break;
+                        case 8:
+                            strPause = StrNarrSubtract(pArrLarge[i], pArrSmall[i]);
+                            pArrLarge[i] = pArrLarge[i] + pArrSmall[i] + 2;
+                            break;
+                        case 9:
+                            strPause = StrNarrSubtract(pArrLarge[i], pArrSmall[i]);
+                            pArrLarge[i] = pArrLarge[i] + pArrSmall[i] + 1;
+                            break;
+                    }
+                    //Carry the 10
+                    pArrLarge[i - 1] = pArrLarge[i - 1] - 1;
+                }
+
+                // Similar to first bead carry check above. 
+                // Looped to work back across all columns to the left.
+                if (i > 0) // (i>0) stops out-of-bounds exception when i=0, ie first iteration of loop.
+                {
+                    for (int j = 1; j < 11; j++)
+                    {
+                        if (pArrLarge[i - j] < 0)
+                        {
+                            strPause = strPause + "\n...subtracting 1 from the left column has made that column less than 0,\n"
+                                                + "...so we need to subtract another 1 from the next left column";
+                            pArrLarge[i - j] = 9;
+                            pArrLarge[i - (j + 1)] = pArrLarge[i - (j + 1)] - 1;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                // Show each iteration, right to left.
+                if (boolSmallIsZero == false)
+                {
+                    DisplayTextBox.Text += ($"\nMinus the " + pArrSmall[i] + " from the #" + (12 - i) + " column\n");
+                    DisplayTextBox.Text += (strPause);
+
+                    // need some sort of pause here, or better, for the user to click something to continue.
+                    // Introduce a delay....
+                    MessageDialog msg = new MessageDialog("Click Close button after you have reviewed the change on screen");
+                    await msg.ShowAsync();
+                    ShowValueOnSoroban(ArrayToLong(pArrLarge));
                 }
             }
             DisplayTextBox.Text += ($"\nFinal answer: " + ArrayToLong(pArrLarge));
@@ -312,6 +419,45 @@ namespace Abacus
                 await msgLargest.ShowAsync();
 
                 AddTwoLongsAsync(Math.Max(longAdd1, longAdd2), Math.Min(longAdd1, longAdd2));
+            }
+            catch (FormatException fEx)
+            {
+                DisplayTextBox.Text = "Error: " + fEx.Message;
+            }
+            catch (Exception)
+            {
+                DisplayTextBox.Text = "Input needs to be an integer between zero and 999999999999\n";
+            }
+        }
+
+        private async void Subtract_Click(object sender, RoutedEventArgs e)
+        {
+            //declare and Gather inputs
+            try
+            {
+                long longAdd1 = long.Parse(InputNumber1.Text);
+                long longAdd2 = long.Parse(InputNumber2.Text);
+
+                if (longAdd1 < 0 || longAdd2 < 0)
+                {
+                    throw new FormatException("Input less than zero");
+                }
+                if (longAdd1 > 999999999999 || longAdd2 > 999999999999)
+                {
+                    throw new FormatException("Input exceeds Soroban maximum value");
+                }
+
+                //Determine the larger input value
+                ShowValueOnSoroban(0);
+                DisplayTextBox.Text = "";
+                string introString = Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Subtraction/Comment2");
+                introString += Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Subtraction/Comment1");
+
+                MessageDialog msgLargest = new MessageDialog(introString);
+                await msgLargest.ShowAsync();
+
+                DisplayTextBox.Text = Math.Max(longAdd1, longAdd2).ToString() + " is displayed on the Soroban above.";
+                SubtractTwoLongs(Math.Max(longAdd1, longAdd2), Math.Min(longAdd1, longAdd2));
             }
             catch (FormatException fEx)
             {

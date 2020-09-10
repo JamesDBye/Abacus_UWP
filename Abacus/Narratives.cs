@@ -47,9 +47,9 @@ namespace Abacus
             xstring += "</Comment2><Comment3>";
             xstring += "Now lets add the numbers together, right to left.";
             xstring += "</Comment3></Addition><Subtraction><Comment1>";
-            xstring += "Subtraction is very similar to addition to perform. When you cannot subtract on a single column you must ADD the complimentary number, and subtract 1 from the left column.";
+            xstring += "\nSubtraction is very similar to addition to perform. When you cannot subtract on a single column - because the result would be less than zero - then you must ADD the complimentary number, and subtract 1 from the left column.";
             xstring += "</Comment1><Comment2>";
-            xstring += " is the larger value. If you want to subtract a bigger number from a smaller number, remember the result will be negative. If that is the case, enter the bigger VALUE first, subtract the smaller value from it. e.g. 2 minus 5 = -3 ; 5 minus 2 = 3. Same result VALUE, different +/- sign.";
+            xstring += "If you want to subtract a bigger number from a smaller number, remember the result will be negative. If that is the case, enter the bigger VALUE in the #1 box, then subtract the smaller value from it. e.g. 2 minus 5 = -3 ; 5 minus 2 = 3. Same result VALUE, different +/- sign.";
             xstring += "</Comment2></Subtraction><Multiplication><Introduction>";
             xstring += "Multiplication is more complex, but makes repeated use of the addition method.";
             xstring += "</Introduction><Terminology>";
