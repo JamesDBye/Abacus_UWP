@@ -352,14 +352,13 @@ namespace Abacus
                     DisplayTextBox.Text += ($"\nMinus the " + pArrSmall[i] + " from the #" + (12 - i) + " column\n");
                     DisplayTextBox.Text += (strPause);
 
-                    // need some sort of pause here, or better, for the user to click something to continue.
                     // Introduce a delay....
                     MessageDialog msg = new MessageDialog("Click Close button after you have reviewed the change on screen");
                     await msg.ShowAsync();
                     ShowValueOnSoroban(ArrayToLong(pArrLarge));
                 }
             }
-            DisplayTextBox.Text += ($"\nFinal answer: " + ArrayToLong(pArrLarge));
+            DisplayTextBox.Text += ($"\nFinal answer: "  +  ArrayToLong(pArrLarge));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -440,14 +439,14 @@ namespace Abacus
             //declare and Gather inputs
             try
             {
-                long longAdd1 = long.Parse(InputNumber1.Text);
-                long longAdd2 = long.Parse(InputNumber2.Text);
+                long longSubtract1 = long.Parse(InputNumber1.Text);
+                long longSubtract2 = long.Parse(InputNumber2.Text);
 
-                if (longAdd1 < 0 || longAdd2 < 0)
+                if (longSubtract1 < 0 || longSubtract2 < 0)
                 {
                     throw new FormatException("Input less than zero");
                 }
-                if (longAdd1 > 999999999999 || longAdd2 > 999999999999)
+                if (longSubtract1 > 999999999999 || longSubtract2 > 999999999999)
                 {
                     throw new FormatException("Input exceeds Soroban maximum value");
                 }
@@ -461,8 +460,9 @@ namespace Abacus
                 MessageDialog msgLargest = new MessageDialog(introString);
                 await msgLargest.ShowAsync();
 
-                DisplayTextBox.Text = Math.Max(longAdd1, longAdd2).ToString() + " is displayed on the Soroban above.";
-                SubtractTwoLongs(Math.Max(longAdd1, longAdd2), Math.Min(longAdd1, longAdd2));
+                DisplayTextBox.Text = Math.Max(longSubtract1, longSubtract2).ToString() + " is displayed on the Soroban above.";
+                SubtractTwoLongs(Math.Max(longSubtract1, longSubtract2), Math.Min(longSubtract1, longSubtract2));
+                //DisplayTextBox.Text += ((longSubtract1 < longSubtract2) ? " [negative]" : "");
             }
             catch (FormatException fEx)
             {
@@ -505,6 +505,50 @@ namespace Abacus
             {
                 DisplayTextBox.Text = "Input needs to be an integer between zero and 999999999999\n";
             }
+        }
+
+        private async void Multiply_Click(object sender, RoutedEventArgs e)
+        {
+            //declare and Gather inputs
+            try
+            {
+                long longAdd1 = long.Parse(InputNumber1.Text);
+                long longAdd2 = long.Parse(InputNumber2.Text);
+
+                if (longAdd1 < 0 || longAdd2 < 0)
+                {
+                    throw new FormatException("Input less than zero");
+                }
+                if (longAdd1 > 999999999999 || longAdd2 > 999999999999)
+                {
+                    throw new FormatException("Input exceeds Soroban maximum value");
+                }
+                if (longAdd1 * longAdd2 > 999999999999)
+                {
+                    throw new FormatException("Not enough columns to display answer");
+                }
+
+                //Determine the larger input value
+                ShowValueOnSoroban(0);
+                DisplayTextBox.Text = "";
+                string introString = Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Multiplication/Introduction");
+                introString += Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Multiplication/Terminology");
+
+                MessageDialog msgLargest = new MessageDialog(introString);
+                await msgLargest.ShowAsync();
+
+                DisplayTextBox.Text = Math.Max(longAdd1, longAdd2).ToString() + " is displayed on the Soroban above.";
+                SubtractTwoLongs(Math.Max(longAdd1, longAdd2), Math.Min(longAdd1, longAdd2));
+            }
+            catch (FormatException fEx)
+            {
+                DisplayTextBox.Text = "Error: " + fEx.Message;
+            }
+            catch (Exception)
+            {
+                DisplayTextBox.Text = "Input needs to be an integer between zero and 999999999999\n";
+            }
+
         }
     }
 

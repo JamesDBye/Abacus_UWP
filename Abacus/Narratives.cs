@@ -53,9 +53,9 @@ namespace Abacus
             xstring += "</Comment2></Subtraction><Multiplication><Introduction>";
             xstring += "Multiplication is more complex, but makes repeated use of the addition method.";
             xstring += "</Introduction><Terminology>";
-            xstring += "We need to introduce some terminology here. When you multiply two numbers, one number is referred to as the 'multiplicand' and the other is called the 'multiplier.' The result is called the 'product'.";
-            xstring += "For example, if you want to multiply 22 by 3, then 22 is the multiplicand and 3 is the multiplier and 66 is the product. You could alternatively say 3 is the multiplicand and 22 is the multiplier - the result will be the same.";
-            xstring += "It is easier to explain the method here by using these terms. I recommend you assign the smaller number as the multiplier.";
+            xstring += "\nWe need to introduce some terminology here. When you multiply two numbers, one number is referred to as the 'multiplicand' and the other is called the 'multiplier.' The result is called the 'product'.";
+            xstring += " For example, if you want to multiply 22 by 3, then 22 is the multiplicand and 3 is the multiplier and 66 is the product. You could alternatively say 3 is the multiplicand and 22 is the multiplier - the result will be the same.";
+            xstring += " It is easier to explain the method here by using these terms. I recommend you assign the smaller number as the multiplier.";
             xstring += "</Terminology></Multiplication></Main_Text_strings><Soroban_Text_Strings><MultiplyTwoLongs><Comment1>";
             xstring += "For now we are just working with integers, though the method will also work for numbers with decimals. The multiplier is placed at the far left of the soroban, the multiplicand goes on the right, but not fully to the right.";
             xstring += "We need to work out where to place the multiplicand and for this we need to look at how many whole digits are in the multiplier and multiplicand.";
