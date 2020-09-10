@@ -3,4 +3,4 @@
 
 # Build results
 Abacus/bin/x64/
-Abacus/bin/x86/Debug/
+Abacus/bin/x86/Debug/*
