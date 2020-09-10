@@ -1,6 +1,6 @@
 # User-specific files
-*.suo
+.vs/Abacus2/v16/.suo
 
 # Build results
-# Abacus/bin/x64/
+Abacus/bin/x64/
 Abacus/bin/x86/
