@@ -62,6 +62,7 @@ namespace Abacus
             string strMaxInput = pValue.ToString();
             int[] arrNumsLarge = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             Ellipse H1, H2, E1, E2, E3, E4, E5;
+            TextBlock TB;
 
             // Put each digit of pValue into the arrNumsLarge array.
             // The array represents each column of the soroban.
@@ -84,6 +85,8 @@ namespace Abacus
                 E3 = (Ellipse)this.FindName("R3C" + i.ToString());
                 E4 = (Ellipse)this.FindName("R2C" + i.ToString());
                 E5 = (Ellipse)this.FindName("R1C" + i.ToString());
+
+                TB = (TextBlock)this.FindName("LC" + i.ToString());
 
                 // Heaven beads
                 if (arrNumsLarge[i] >= 5)
@@ -128,6 +131,8 @@ namespace Abacus
                         E1.Visibility = E2.Visibility = E3.Visibility = E4.Visibility = E5.Visibility = Visibility.Collapsed;
                         break;
                 }
+                //Display the number below the earth beads
+                TB.Text = arrNumsLarge[i].ToString();
             }//loop ends
         }
 

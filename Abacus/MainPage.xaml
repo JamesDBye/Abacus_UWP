@@ -179,7 +179,20 @@
         <TextBlock Grid.Column="11" Grid.Row="3" HorizontalAlignment="Center" Text="#10" TextWrapping="Wrap" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="10" Grid.Row="3" HorizontalAlignment="Center" Text="#11" TextWrapping="Wrap" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="9" Grid.Row="3" HorizontalAlignment="Center" Text="#12" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock x:Name="LC11" Grid.Column="20" HorizontalAlignment="Center" Grid.Row="9" Text="0" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock x:Name="LC10" Grid.Column="19" HorizontalAlignment="Center" Grid.Row="9" Text="0" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock x:Name="LC9" Grid.Column="18" HorizontalAlignment="Center" Grid.Row="9" Text="0" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock x:Name="LC8" Grid.Column="17" HorizontalAlignment="Center" Grid.Row="9" Text="0" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock x:Name="LC7" Grid.Column="16" HorizontalAlignment="Center" Grid.Row="9" Text="0" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock x:Name="LC6" Grid.Column="15" HorizontalAlignment="Center" Grid.Row="9" Text="0" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock x:Name="LC5" Grid.Column="14" HorizontalAlignment="Center" Grid.Row="9" Text="0" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock x:Name="LC4" Grid.Column="13" HorizontalAlignment="Center" Grid.Row="9" Text="0" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock x:Name="LC3" Grid.Column="12" HorizontalAlignment="Center" Grid.Row="9" Text="0" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock x:Name="LC2" Grid.Column="11" HorizontalAlignment="Center" Grid.Row="9" Text="0" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock x:Name="LC1" Grid.Column="10" HorizontalAlignment="Center" Grid.Row="9" Text="0" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock x:Name="LC0" Grid.Column="9" HorizontalAlignment="Center" Grid.Row="9" Text="0" TextWrapping="Wrap" VerticalAlignment="Center"/>
         
+
     </Grid>
 
 </Page>
