@@ -284,7 +284,7 @@ namespace Abacus
             }
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
+        private async void Add_Click(object sender, RoutedEventArgs e)
         {
             //declare and Gather inputs
             try
@@ -302,10 +302,15 @@ namespace Abacus
                 }
 
                 //Determine the larger input value
+                ShowValueOnSoroban(0);
                 DisplayTextBox.Text = "";
-                DisplayTextBox.Text += "\n" + Math.Max(longAdd1, longAdd2) + " is the larger number. We display this first, and add the smaller number to it.";
-                DisplayTextBox.Text += "\nWe add by moving right to left across the abacus.\n";
-                DisplayTextBox.Text += Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Addition/Comment1");
+                string introString = Math.Max(longAdd1, longAdd2) + " is the larger number. We display this first, and add the smaller number to it.";
+                introString += "\nWe add by moving from left to right across the columns of the abacus.\n";
+                introString += Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Addition/Comment1");
+
+                MessageDialog msgLargest = new MessageDialog(introString);
+                await msgLargest.ShowAsync();
+
                 AddTwoLongsAsync(Math.Max(longAdd1, longAdd2), Math.Min(longAdd1, longAdd2));
             }
             catch (FormatException fEx)
