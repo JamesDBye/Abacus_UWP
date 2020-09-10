@@ -41,7 +41,7 @@ namespace Abacus
             xstring += "&#39;Above&#39; and &#39;below&#39; are sometimes referred to as &#39;Heaven&#39; and &#39;Earth&#39;.\nAt the moment, the Soroban is displaying the number zero. To see what the number 25 would look like, ";
             xstring += "type 25 into the #1 box and click the button labelled &#39;Display Number #1&#39; and it will display above. Alternatively, click one of the other buttons to see how to count or perform addition.";
             xstring += " </More_info></Introduction><Addition><Comment1>";
-            xstring += "When adding numbers on a stick, if the result is greater than 9 you must SUBTRACT a complementary number and add 1 to the stick on the left. [Complementary numbers: 1&amp;9, 2&amp;8, 3&amp;7, 4&amp;6, 5&amp;5, 6&amp;4, 7&amp;3, 8&amp;2, 9&amp;1 ]";
+            xstring += "When adding numbers on a stick, if the result would be greater than 9, you must SUBTRACT a complementary number instead - and then add 1 to the stick on the left. [Complementary numbers: 1&amp;9, 2&amp;8, 3&amp;7, 4&amp;6, 5&amp;5, 6&amp;4, 7&amp;3, 8&amp;2, 9&amp;1 ]";
             xstring += "</Comment1><Comment2>";
             xstring += "is the larger number. We will display this first.";
             xstring += "</Comment2><Comment3>";
