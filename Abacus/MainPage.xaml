@@ -65,7 +65,7 @@
         <Button x:Name="MinusButton"     Content="#1 Minus #2"       Grid.Column="3" Grid.Row="11" Height="45" Width="177" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Subtract_Click"/>
         <Button x:Name="TimesButton"     Content="Number#1 x Number#2"           Grid.Column="3" Grid.Row="11" Height="45" Width="177" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="Multiply_Click" />
         <Button x:Name="CountButton"     Content="Count from #1"     Grid.Column="3" Grid.Row="10" Height="45" Width="177" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Count_Click" />
-        <TextBox x:Name="DisplayTextBox" Grid.ColumnSpan="16"  Grid.RowSpan="2" Grid.Column="5" HorizontalAlignment="Stretch"  Grid.Row="10" Text="Instructions" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
+        <TextBox x:Name="DisplayTextBox" Grid.ColumnSpan="16"  Grid.RowSpan="2" Grid.Column="5" HorizontalAlignment="Stretch"  Grid.Row="10" Text="Instructions" TextWrapping="Wrap" VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
         <TextBlock x:Name="Input1Label" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" Text="Number#1 :" TextWrapping="Wrap" VerticalAlignment="Center"/>
         <TextBlock x:Name="Input1Labe2" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" Text="Number#2 :" TextWrapping="Wrap" VerticalAlignment="Center"/>
 

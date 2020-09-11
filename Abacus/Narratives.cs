@@ -63,7 +63,7 @@ namespace Abacus
             xstring += "</Comment1><Comment2>";
             xstring += "To multiply two numbers together, we multiply a single digit of the multiplier by a single digit of the multiplicand. We take the product and add it to the right of the multiplicand. We repeat this, going across the multiplier left to right and across the multiplicand right to left.";
             xstring += " The products should be dealt with as 2-digit numbers - i.e. 6 is 06, and each product is shifted to the right each time the digit of the multiplier changes.";
-            xstring += " It sounds complicated but it isn't. Watch how your example is calculated step by step above. You do need to know your times tables from 2x2 to 9x9 to be able to perform multiplication on a soroban.";
+            xstring += " It sounds complicated but it isn't. Watch how your example is calculated step by step above. You do need to know your times tables from 2x2 to 9x9 to be able to perform multiplication on a soroban.\n";
             xstring += "</Comment2></MultiplyTwoLongs></Soroban_Text_Strings></All_Text_Strings>";
 
             xmlDoc.LoadXml(xstring);

@@ -358,7 +358,7 @@ namespace Abacus
                     ShowValueOnSoroban(ArrayToLong(pArrLarge));
                 }
             }
-            DisplayTextBox.Text += ($"\nFinal answer: "  + (isNegative ? "-" : "+") + ArrayToLong(pArrLarge));
+            DisplayTextBox.Text += ($"\nFinal answer: "  + (isNegative ? "-" : "+") + ArrayToLong(pArrLarge)); //notice the shorthand if-then-else on isNegative
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -523,7 +523,7 @@ namespace Abacus
             await msgLargest.ShowAsync();
 
             DisplayTextBox.Text = "In our example " + multiplier + " goes to the left and " + multiplicand + " starts " +  multiplicandStartPos 
-                                + " to the left of the rightmost bar.\nTo begin with it looks like as above.\n";
+                                + " to the left of the rightmost bar. To begin with it looks like as above.\n";
 
             long initialDisplay = long.Parse(multiplier.ToString().PadRight((11 - multiplicandStartPos), '0') + multiplicand.ToString().PadRight((1 + multiplicandStartPos), '0'));
             ShowValueOnSoroban(initialDisplay);
@@ -540,6 +540,9 @@ namespace Abacus
             int t = 1;  // t gets bigger, while i below gets smaller
             for (int i = multiplicand.ToString().Length; i > 0; i--)
             {
+                //first time around, clear the displaybox text.
+                //if (t ==1) {DisplayTextBox.Text = "";}
+
                 //single digit of the multipliand ***
                 double dblMultiplicandDigit = double.Parse((multiplicand.ToString()).Substring((i - 1), 1));
 
@@ -550,7 +553,7 @@ namespace Abacus
                     double dblMultiplerDigit = double.Parse(multiplier.ToString().Substring(j, 1));
                     double dblTens = dbl10ToPower(t - j);
                     dblProduct = dblMultiplerDigit * dblMultiplicandDigit;
-                    DisplayTextBox.Text += "\nAdd " + dblProduct + " (" + dblMultiplerDigit + " x " + dblMultiplicandDigit + ") to the right...";
+                    DisplayTextBox.Text += "Add " + dblProduct + " (" + dblMultiplerDigit + " x " + dblMultiplicandDigit + ") to the right... ";
                     MessageDialog msgPause = new MessageDialog("Hit return to continue.");
                     await msgPause.ShowAsync();
 
@@ -558,14 +561,13 @@ namespace Abacus
                     dblToDisplay += dblProduct * dblTens * dblShifter;  
                     ShowValueOnSoroban(long.Parse(dblToDisplay.ToString()));
                 }
-                DisplayTextBox.Text += "\nClear the end of multiplicand (" + dblMultiplicandDigit + ")...";
+                DisplayTextBox.Text += "Clear the end of multiplicand (" + dblMultiplicandDigit + ")... ";
                 dblToDisplay -= (dblMultiplicandDigit * dbl10ToPower(t + 2) * dblShifter);
                 ShowValueOnSoroban(long.Parse(dblToDisplay.ToString()));
                 t++;
             }
-            DisplayTextBox.Text += "\nRemove multiplier, leaves final result:\n";
-            ShowValueOnSoroban(multiplier * multiplicand);
-            DisplayTextBox.Text += "\n" + (multiplier * multiplicand);
+            DisplayTextBox.Text += "\nRemove multiplier, leaves final result: " + (multiplier * multiplicand);
+            ShowValueOnSoroban(multiplier * multiplicand); 
         }
         private async void Multiply_Click(object sender, RoutedEventArgs e)
         {
