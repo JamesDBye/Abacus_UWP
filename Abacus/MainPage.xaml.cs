@@ -167,7 +167,7 @@ namespace Abacus
 
             ShowValueOnSoroban(longLarge);
             
-            MessageDialog msgLargest = new MessageDialog("Hit return after reviewing the change on screen");
+            MessageDialog msgLargest = new MessageDialog("Hit return to continue.");
             await msgLargest.ShowAsync();
             
             for (int i = 0; i < 12; i++)
@@ -253,7 +253,7 @@ namespace Abacus
 
                     // need some sort of pause here, or better, for the user to click something to continue.
                     // Introduce a delay....
-                    MessageDialog msg = new MessageDialog("Click Close button after you have reviewed the change on screen");
+                    MessageDialog msg = new MessageDialog("Hit return to continue.");
                     await msg.ShowAsync();
                     ShowValueOnSoroban(ArrayToLong(pArrLarge)); 
                 }
@@ -269,7 +269,7 @@ namespace Abacus
 
             ShowValueOnSoroban(longLarge);
 
-            MessageDialog msgLargest = new MessageDialog("Hit return after reviewing the change on screen");
+            MessageDialog msgLargest = new MessageDialog("Hit return to continue.");
             await msgLargest.ShowAsync();
 
             for (int i = 0; i < 12; i++)
@@ -507,6 +507,66 @@ namespace Abacus
             }
         }
 
+        public static double dbl10ToPower(int pPower)
+        {
+            var v1 = Math.Pow(10, pPower);
+            double result = double.Parse(v1.ToString());
+            return result;
+        }
+
+        public async Task MultiplyTwoLongs(long multiplicand, long multiplier)
+        {
+
+            int multiplicandStartPos = (multiplier.ToString() + multiplicand.ToString()).Length;
+
+            MessageDialog msgLargest = new MessageDialog(Narratives.GetXMLNarrs("//All_Text_Strings/Soroban_Text_Strings/MultiplyTwoLongs/Comment1"));
+            await msgLargest.ShowAsync();
+
+            DisplayTextBox.Text = "In our example " + multiplier + " goes to the left and " + multiplicand + " starts " +  multiplicandStartPos 
+                                + " to the left of the rightmost bar.\nTo begin with it looks like as above.\n";
+
+            long initialDisplay = long.Parse(multiplier.ToString().PadRight((11 - multiplicandStartPos), '0') + multiplicand.ToString().PadRight((1 + multiplicandStartPos), '0'));
+            ShowValueOnSoroban(initialDisplay);
+
+            int intLengthOfMultiplier = multiplier.ToString().Length;
+            double dblToDisplay = double.Parse(initialDisplay.ToString());
+            double dblProduct = 0;
+            double dblShifter = dbl10ToPower(intLengthOfMultiplier - 2);
+
+            DisplayTextBox.Text += Narratives.GetXMLNarrs("//All_Text_Strings/Soroban_Text_Strings/MultiplyTwoLongs/Comment2");
+
+            //main logic, loop - backwards through each digit of multiplicand
+            //uses doubles rather than longs because at some points we have to mutiply results by 0.1
+            int t = 1;  // t gets bigger, while i below gets smaller
+            for (int i = multiplicand.ToString().Length; i > 0; i--)
+            {
+                //single digit of the multipliand ***
+                double dblMultiplicandDigit = double.Parse((multiplicand.ToString()).Substring((i - 1), 1));
+
+                //2nd loop - forwards through each digit of the multiplier 
+                for (int j = 0; j < multiplier.ToString().Length; j++)
+                {
+                    //single digit of the multiplier ***
+                    double dblMultiplerDigit = double.Parse(multiplier.ToString().Substring(j, 1));
+                    double dblTens = dbl10ToPower(t - j);
+                    dblProduct = dblMultiplerDigit * dblMultiplicandDigit;
+                    DisplayTextBox.Text += "\nAdd " + dblProduct + " (" + dblMultiplerDigit + " x " + dblMultiplicandDigit + ") to the right...";
+                    MessageDialog msgPause = new MessageDialog("Hit return to continue.");
+                    await msgPause.ShowAsync();
+
+                    //adding the product back into the displayed number on Soroban
+                    dblToDisplay += dblProduct * dblTens * dblShifter;  
+                    ShowValueOnSoroban(long.Parse(dblToDisplay.ToString()));
+                }
+                DisplayTextBox.Text += "\nClear the end of multiplicand (" + dblMultiplicandDigit + ")...";
+                dblToDisplay -= (dblMultiplicandDigit * dbl10ToPower(t + 2) * dblShifter);
+                ShowValueOnSoroban(long.Parse(dblToDisplay.ToString()));
+                t++;
+            }
+            DisplayTextBox.Text += "\nRemove multiplier, leaves final result:\n";
+            ShowValueOnSoroban(multiplier * multiplicand);
+            DisplayTextBox.Text += "\n" + (multiplier * multiplicand);
+        }
         private async void Multiply_Click(object sender, RoutedEventArgs e)
         {
             //declare and Gather inputs
@@ -536,9 +596,7 @@ namespace Abacus
 
                 MessageDialog msgLargest = new MessageDialog(introString);
                 await msgLargest.ShowAsync();
-
-                DisplayTextBox.Text = Math.Max(longAdd1, longAdd2).ToString() + " is displayed on the Soroban above.";
-                //SubtractTwoLongs(Math.Max(longAdd1, longAdd2), Math.Min(longAdd1, longAdd2));
+                MultiplyTwoLongs(longAdd1, longAdd2);
             }
             catch (FormatException fEx)
             {

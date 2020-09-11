@@ -54,16 +54,16 @@ namespace Abacus
             xstring += "Multiplication is more complex, but makes repeated use of the addition method.";
             xstring += "</Introduction><Terminology>";
             xstring += "\nWe need to introduce some terminology here. When you multiply two numbers, one number is referred to as the 'multiplicand' and the other is called the 'multiplier.' The result is called the 'product'.";
-            xstring += " For example, if you want to multiply 22 by 3, then 22 is the multiplicand and 3 is the multiplier and 66 is the product. You could alternatively say 3 is the multiplicand and 22 is the multiplier - the result will be the same.";
-            xstring += " It is easier to explain the method here by using these terms. I recommend you assign the smaller number as the multiplier.";
+            xstring += " For example, if you want to multiply 22 by 3, then 22 is the multiplicand and 3 is the multiplier and 66 is the product.";
+            xstring += " It is easier to explain the method here by using these terms. I recommend you assign the smaller number as the multiplier (Number#2).";
             xstring += "</Terminology></Multiplication></Main_Text_strings><Soroban_Text_Strings><MultiplyTwoLongs><Comment1>";
-            xstring += "For now we are just working with integers, though the method will also work for numbers with decimals. The multiplier is placed at the far left of the soroban, the multiplicand goes on the right, but not fully to the right.";
-            xstring += "We need to work out where to place the multiplicand and for this we need to look at how many whole digits are in the multiplier and multiplicand.";
-            xstring += "If the multiplicand is 123 and the multiplier is 32, there are 5 whole digits in total. This means we enter the multiplicand 5 columns to the left of the rightmost column.";
+            xstring += "For now we are just working with integers, though the method will also work for numbers with decimal parts. The multiplier is placed at the far left of the soroban, the multiplicand goes on the right, but not fully to the right.";
+            xstring += " We need to work out where to place the multiplicand and for this we need to look at how many whole digits are in the multiplier and multiplicand.";
+            xstring += " For example, if the multiplicand was 123 and the multiplier was 32, there would be 5 whole digits in total. This means we enter the multiplicand 5 columns to the left of the rightmost column.";
             xstring += "</Comment1><Comment2>";
-            xstring += "To multiply two numbers together, we multiply a single digit of the multiplier by a single digit of the multiplicand. We take the product and add it to the right of the multiplicand. We repeat this, going across the multiplier left to right and across the multiplicand left to right.";
-            xstring += "The products should be dealt with as 2-digit numbers - i.e. 6 is 06, and each product is shifted to the right each time the digit of the multiplier changes.";
-            xstring += "It sounds complicated but it isn't. Watch how your example is calculated step by step below. You do need to know your times tables from 2x2 to 9x9 to be able to perform this on a soroban for real :)";
+            xstring += "To multiply two numbers together, we multiply a single digit of the multiplier by a single digit of the multiplicand. We take the product and add it to the right of the multiplicand. We repeat this, going across the multiplier left to right and across the multiplicand right to left.";
+            xstring += " The products should be dealt with as 2-digit numbers - i.e. 6 is 06, and each product is shifted to the right each time the digit of the multiplier changes.";
+            xstring += " It sounds complicated but it isn't. Watch how your example is calculated step by step above. You do need to know your times tables from 2x2 to 9x9 to be able to perform multiplication on a soroban.";
             xstring += "</Comment2></MultiplyTwoLongs></Soroban_Text_Strings></All_Text_Strings>";
 
             xmlDoc.LoadXml(xstring);
