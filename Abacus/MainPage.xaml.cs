@@ -261,7 +261,7 @@ namespace Abacus
             DisplayTextBox.Text += ($"\nFinal answer: " + ArrayToLong(pArrLarge));
         }
 
-        public async Task SubtractTwoLongs(long longLarge, long longSmall)
+        public async Task SubtractTwoLongs(long longLarge, long longSmall, bool isNegative)
         {
             string strPause = "";
             int[] pArrLarge = LongToArray(longLarge);
@@ -358,7 +358,7 @@ namespace Abacus
                     ShowValueOnSoroban(ArrayToLong(pArrLarge));
                 }
             }
-            DisplayTextBox.Text += ($"\nFinal answer: "  +  ArrayToLong(pArrLarge));
+            DisplayTextBox.Text += ($"\nFinal answer: "  + (isNegative ? "-" : "+") + ArrayToLong(pArrLarge));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -461,8 +461,8 @@ namespace Abacus
                 await msgLargest.ShowAsync();
 
                 DisplayTextBox.Text = Math.Max(longSubtract1, longSubtract2).ToString() + " is displayed on the Soroban above.";
-                SubtractTwoLongs(Math.Max(longSubtract1, longSubtract2), Math.Min(longSubtract1, longSubtract2));
-                //DisplayTextBox.Text += ((longSubtract1 < longSubtract2) ? " [negative]" : "");
+                SubtractTwoLongs(Math.Max(longSubtract1, longSubtract2), Math.Min(longSubtract1, longSubtract2), (longSubtract1 < longSubtract2));
+                
             }
             catch (FormatException fEx)
             {
@@ -538,7 +538,7 @@ namespace Abacus
                 await msgLargest.ShowAsync();
 
                 DisplayTextBox.Text = Math.Max(longAdd1, longAdd2).ToString() + " is displayed on the Soroban above.";
-                SubtractTwoLongs(Math.Max(longAdd1, longAdd2), Math.Min(longAdd1, longAdd2));
+                //SubtractTwoLongs(Math.Max(longAdd1, longAdd2), Math.Min(longAdd1, longAdd2));
             }
             catch (FormatException fEx)
             {
