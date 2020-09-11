@@ -167,7 +167,12 @@ namespace Abacus
 
             ShowValueOnSoroban(longLarge);
             
-            MessageDialog msgLargest = new MessageDialog("Hit return to continue.");
+            ContentDialog msgLargest = new ContentDialog()
+            {
+                Title = "Demonstration",
+                Content = "Hit return to continue.",
+                CloseButtonText = "Ok"
+            }; 
             await msgLargest.ShowAsync();
             
             for (int i = 0; i < 12; i++)
@@ -253,7 +258,12 @@ namespace Abacus
 
                     // need some sort of pause here, or better, for the user to click something to continue.
                     // Introduce a delay....
-                    MessageDialog msg = new MessageDialog("Hit return to continue.");
+                    ContentDialog msg = new ContentDialog()
+                    {
+                        Title = "Demonstration",
+                        Content = "Hit return.",
+                        CloseButtonText = "Ok"
+                    };
                     await msg.ShowAsync();
                     ShowValueOnSoroban(ArrayToLong(pArrLarge)); 
                 }
@@ -269,7 +279,12 @@ namespace Abacus
 
             ShowValueOnSoroban(longLarge);
 
-            MessageDialog msgLargest = new MessageDialog("Hit return to continue.");
+            ContentDialog msgLargest = new ContentDialog()
+            {
+                Title = "Demonstration",
+                Content = "Hit return.",
+                CloseButtonText = "Ok"
+            };
             await msgLargest.ShowAsync();
 
             for (int i = 0; i < 12; i++)
@@ -353,7 +368,12 @@ namespace Abacus
                     DisplayTextBox.Text += (strPause);
 
                     // Introduce a delay....
-                    MessageDialog msg = new MessageDialog("Click Close button after you have reviewed the change on screen");
+                    ContentDialog msg = new ContentDialog()
+                    {
+                        Title = "Demonstration",
+                        Content = "Hit return.",
+                        CloseButtonText = "Ok"
+                    };
                     await msg.ShowAsync();
                     ShowValueOnSoroban(ArrayToLong(pArrLarge));
                 }
@@ -419,7 +439,12 @@ namespace Abacus
                 introString += "\nWe add by moving from left to right across the columns of the abacus.\n";
                 introString += Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Addition/Comment1");
 
-                MessageDialog msgLargest = new MessageDialog(introString);
+                ContentDialog msgLargest = new ContentDialog()
+                {
+                    Title = "Demonstration",
+			        Content = introString,
+			        CloseButtonText = "Ok"
+                };
                 await msgLargest.ShowAsync();
 
                 AddTwoLongsAsync(Math.Max(longAdd1, longAdd2), Math.Min(longAdd1, longAdd2));
@@ -457,7 +482,12 @@ namespace Abacus
                 string introString = Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Subtraction/Comment2");
                 introString += Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Subtraction/Comment1");
 
-                MessageDialog msgLargest = new MessageDialog(introString);
+                ContentDialog msgLargest = new ContentDialog() 
+                {
+                    Title = "Demonstration",
+                    Content = introString,
+                    CloseButtonText = "Ok"
+                };
                 await msgLargest.ShowAsync();
 
                 DisplayTextBox.Text = Math.Max(longSubtract1, longSubtract2).ToString() + " is displayed on the Soroban above.";
@@ -519,7 +549,12 @@ namespace Abacus
 
             int multiplicandStartPos = (multiplier.ToString() + multiplicand.ToString()).Length;
 
-            MessageDialog msgLargest = new MessageDialog(Narratives.GetXMLNarrs("//All_Text_Strings/Soroban_Text_Strings/MultiplyTwoLongs/Comment1"));
+            ContentDialog msgLargest = new ContentDialog()
+            {
+                Title = "Demonstration",
+                Content = Narratives.GetXMLNarrs("//All_Text_Strings/Soroban_Text_Strings/MultiplyTwoLongs/Comment1"),
+                CloseButtonText = "Ok"
+            };
             await msgLargest.ShowAsync();
 
             DisplayTextBox.Text = "In our example " + multiplier + " goes to the left and " + multiplicand + " starts " +  multiplicandStartPos 
@@ -554,7 +589,12 @@ namespace Abacus
                     double dblTens = dbl10ToPower(t - j);
                     dblProduct = dblMultiplerDigit * dblMultiplicandDigit;
                     DisplayTextBox.Text += "Add " + dblProduct + " (" + dblMultiplerDigit + " x " + dblMultiplicandDigit + ") to the right... ";
-                    MessageDialog msgPause = new MessageDialog("Hit return to continue.");
+                    ContentDialog msgPause = new ContentDialog()
+                    {
+                        Title = "Demonstration",
+                        Content = "Hit return.",
+                        CloseButtonText = "Ok"
+                    };
                     await msgPause.ShowAsync();
 
                     //adding the product back into the displayed number on Soroban
@@ -596,7 +636,12 @@ namespace Abacus
                 string introString = Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Multiplication/Introduction");
                 introString += Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Multiplication/Terminology");
 
-                MessageDialog msgLargest = new MessageDialog(introString);
+                ContentDialog msgLargest = new ContentDialog()
+                {
+                    Title = "Demonstration",
+                    Content = introString,
+                    CloseButtonText = "Ok"
+                };
                 await msgLargest.ShowAsync();
                 MultiplyTwoLongs(longAdd1, longAdd2);
             }
