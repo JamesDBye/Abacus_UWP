@@ -57,7 +57,7 @@ namespace Abacus
         public static long ArrayToLong(int[] pArrInts)
         {
             string strCombined = "";
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 17; i++)
             {
                 strCombined += pArrInts[i];
             }
@@ -148,18 +148,18 @@ namespace Abacus
         public static int[] LongToArray(long pValue)
         {
             string strMaxInput = pValue.ToString();
-            int[] arrNumsLarge = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            int[] arrNumsLarge = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
             // Put each digit of intMaxInput into the arrNumsLarge array.
             // The array represents each column of the soroban.
             for (int i = 0; i < strMaxInput.Length; i++)
             {
-                arrNumsLarge[i + (12 - strMaxInput.Length)] = int.Parse(strMaxInput.Substring(i, 1));
+                arrNumsLarge[i + (17 - strMaxInput.Length)] = int.Parse(strMaxInput.Substring(i, 1));
             }
             return arrNumsLarge;
         }
 
-        public async Task AddTwoLongsAsync(long longLarge, long longSmall) // removed static keyword, as it wouldn't work until removed.
+        public async Task AddTwoLongsAsync(long longLarge, long longSmall) 
         {
             string strPause = "";
             int[] pArrLarge = LongToArray(longLarge);
@@ -170,12 +170,12 @@ namespace Abacus
             ContentDialog msgLargest = new ContentDialog()
             {
                 Title = "Demonstration",
-                Content = "Hit return to continue.",
+                Content = "Hit return",
                 CloseButtonText = "Ok"
             }; 
             await msgLargest.ShowAsync();
             
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 17; i++)
             {
                 //whether or not to display this calculation
                 bool boolSmallIsZero = (pArrSmall[i] == 0);
@@ -233,7 +233,7 @@ namespace Abacus
                 // Looped to work back across all columns to the left.
                 if (i > 0) // (i>0) stops out-of-bounds exception when i=0, ie first iteration of loop.
                 {
-                    for (int j = 1; j < 11; j++)
+                    for (int j = 1; j < 16; j++)
                     {
                         if (pArrLarge[i - j] > 9)
                         {
@@ -253,7 +253,7 @@ namespace Abacus
                 // Show each iteration, right to left.
                 if (boolSmallIsZero == false)
                 {
-                    DisplayTextBox.Text += ($"\nAdd the " + pArrSmall[i] + " on the #" + (12 - i) + " column");
+                    DisplayTextBox.Text += ($"\nAdd the " + pArrSmall[i] + " on the #" + (17 - i) + " column");
                     DisplayTextBox.Text += strPause;
 
                     // need some sort of pause here, or better, for the user to click something to continue.
@@ -287,7 +287,7 @@ namespace Abacus
             };
             await msgLargest.ShowAsync();
 
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 17; i++)
             {
                 //whether or not to display this calculation
                 bool boolSmallIsZero = (pArrSmall[i] == 0);
@@ -345,7 +345,7 @@ namespace Abacus
                 // Looped to work back across all columns to the left.
                 if (i > 0) // (i>0) stops out-of-bounds exception when i=0, ie first iteration of loop.
                 {
-                    for (int j = 1; j < 11; j++)
+                    for (int j = 1; j < 16; j++)
                     {
                         if (pArrLarge[i - j] < 0)
                         {
@@ -364,7 +364,7 @@ namespace Abacus
                 // Show each iteration, right to left.
                 if (boolSmallIsZero == false)
                 {
-                    DisplayTextBox.Text += ($"\nMinus the " + pArrSmall[i] + " from the #" + (12 - i) + " column\n");
+                    DisplayTextBox.Text += ($"\nMinus the " + pArrSmall[i] + " from the #" + (17 - i) + " column\n");
                     DisplayTextBox.Text += (strPause);
 
                     // Introduce a delay....
@@ -395,7 +395,7 @@ namespace Abacus
                 {
                     throw new FormatException("Input less than zero");
                 }
-                if (longAdd1 > 999999999999 )
+                if (longAdd1 > 99999999999999999 )
                 {
                     throw new FormatException("Input exceeds Soroban maximum value");
                 }
@@ -427,7 +427,7 @@ namespace Abacus
                 {
                     throw new FormatException("Input less than zero");
                 }
-                if (longAdd1 > 999999999999 || longAdd2 > 999999999999)
+                if (longAdd1 > 99999999999999999 || longAdd2 > 99999999999999999)
                 {
                     throw new FormatException("Input exceeds Soroban maximum value");
                 }
@@ -455,7 +455,7 @@ namespace Abacus
             }
             catch (Exception)
             {
-                DisplayTextBox.Text = "Input needs to be an integer between zero and 999999999999\n";
+                DisplayTextBox.Text = "Input needs to be an integer between zero and 99999999999999999\n";
             }
         }
 
@@ -471,7 +471,7 @@ namespace Abacus
                 {
                     throw new FormatException("Input less than zero");
                 }
-                if (longSubtract1 > 999999999999 || longSubtract2 > 999999999999)
+                if (longSubtract1 > 99999999999999999 || longSubtract2 > 99999999999999999)
                 {
                     throw new FormatException("Input exceeds Soroban maximum value");
                 }
@@ -500,7 +500,7 @@ namespace Abacus
             }
             catch (Exception)
             {
-                DisplayTextBox.Text = "Input needs to be an integer between zero and 999999999999\n";
+                DisplayTextBox.Text = "Input needs to be an integer between zero and 99999999999999999\n";
             }
         }
 
@@ -518,7 +518,7 @@ namespace Abacus
                 {
                     throw new FormatException("Input less than zero");
                 }
-                if (longAdd1 > 999999999999)
+                if (longAdd1 > 99999999999999999)
                 {
                     throw new FormatException("Input exceeds Soroban maximum value");
                 }
@@ -533,7 +533,7 @@ namespace Abacus
             }
             catch (Exception)
             {
-                DisplayTextBox.Text = "Input needs to be an integer between zero and 999999999999\n";
+                DisplayTextBox.Text = "Input needs to be an integer between zero and 99999999999999999\n";
             }
         }
 
@@ -621,11 +621,11 @@ namespace Abacus
                 {
                     throw new FormatException("Input less than zero");
                 }
-                if (longAdd1 > 999999999999 || longAdd2 > 999999999999)
+                if (longAdd1 > 99999999999999999 || longAdd2 > 99999999999999999)
                 {
                     throw new FormatException("Input exceeds Soroban maximum value");
                 }
-                if (longAdd1 * longAdd2 > 999999999999)
+                if (longAdd1 * longAdd2 > 99999999999999999)
                 {
                     throw new FormatException("Not enough columns to display answer");
                 }
