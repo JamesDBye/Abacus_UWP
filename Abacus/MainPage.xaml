@@ -208,7 +208,7 @@
         <Ellipse x:Name="R3C16" Grid.ColumnSpan="1" Grid.Column="20" HorizontalAlignment="Center" Height="40" Width="45" Grid.Row="6" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
         <Ellipse x:Name="R2C16" Grid.ColumnSpan="1" Grid.Column="20" HorizontalAlignment="Center" Height="40" Width="45" Grid.Row="7" Stroke="Black" VerticalAlignment="Center" Fill="Black"/>
         <Ellipse x:Name="R1C16" Grid.ColumnSpan="1" Grid.Column="20" HorizontalAlignment="Center" Height="40" Width="45" Grid.Row="8" Stroke="Black" VerticalAlignment="Center" Fill="Black" />
-        <Rectangle Grid.ColumnSpan="18" Grid.Column="4" Height="24" Grid.Row="3" Stroke="Black" VerticalAlignment="Center" Fill="Brown" Margin="12,0,38,0"/>
+        <Rectangle Grid.ColumnSpan="17" Grid.Column="4" Height="24" Grid.Row="3" Stroke="Black" VerticalAlignment="Center" Fill="Brown" Margin="0,0,0,0"/>
         <TextBlock Grid.Column="20" HorizontalAlignment="Center" Text="1s" TextWrapping="Wrap" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="19" HorizontalAlignment="Center" Text="10s" TextWrapping="Wrap" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="18" HorizontalAlignment="Center" Text="100s" TextWrapping="Wrap" VerticalAlignment="Center"/>
