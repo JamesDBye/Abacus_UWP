@@ -144,7 +144,7 @@ namespace Abacus
             }//loop ends
         }
 
-        //Read an integer into an array, eg. 12345 --> {0,0,0,0,0,0,0,1,2,3,4,5}
+        //Read an integer into an array, eg. 12345 --> {0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5}
         public static int[] LongToArray(long pValue)
         {
             string strMaxInput = pValue.ToString();
@@ -255,8 +255,8 @@ namespace Abacus
                 {
                     DisplayTextBox.Text += ($"\nAdd the " + pArrSmall[i] + " on the #" + (17 - i) + " column");
                     DisplayTextBox.Text += strPause;
+                    strPause = ""; // added to fix bug, caused incorrectly messages to appear.
 
-                    // need some sort of pause here, or better, for the user to click something to continue.
                     // Introduce a delay....
                     ContentDialog msg = new ContentDialog()
                     {
@@ -366,7 +366,7 @@ namespace Abacus
                 {
                     DisplayTextBox.Text += ($"\nMinus the " + pArrSmall[i] + " from the #" + (17 - i) + " column\n");
                     DisplayTextBox.Text += (strPause);
-
+                    strPause = ""; //fixed bug
                     // Introduce a delay....
                     ContentDialog msg = new ContentDialog()
                     {
