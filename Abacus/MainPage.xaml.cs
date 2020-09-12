@@ -560,7 +560,7 @@ namespace Abacus
             DisplayTextBox.Text = "In our example " + multiplier + " goes to the left and " + multiplicand + " starts " +  multiplicandStartPos 
                                 + " to the left of the rightmost bar. To begin with it looks like as above.\n";
 
-            long initialDisplay = long.Parse(multiplier.ToString().PadRight((11 - multiplicandStartPos), '0') + multiplicand.ToString().PadRight((1 + multiplicandStartPos), '0'));
+            long initialDisplay = long.Parse(multiplier.ToString().PadRight((16 - multiplicandStartPos), '0') + multiplicand.ToString().PadRight((1 + multiplicandStartPos), '0'));
             ShowValueOnSoroban(initialDisplay);
 
             int intLengthOfMultiplier = multiplier.ToString().Length;
@@ -599,7 +599,7 @@ namespace Abacus
 
                     //adding the product back into the displayed number on Soroban
                     dblToDisplay += dblProduct * dblTens * dblShifter;  
-                    ShowValueOnSoroban(long.Parse(dblToDisplay.ToString()));
+                    ShowValueOnSoroban(long.Parse(dblToDisplay.ToString()));  // seems to fail here when doing : 234 x 12
                 }
                 DisplayTextBox.Text += "Clear the end of multiplicand (" + dblMultiplicandDigit + ")... ";
                 dblToDisplay -= (dblMultiplicandDigit * dbl10ToPower(t + 2) * dblShifter);
