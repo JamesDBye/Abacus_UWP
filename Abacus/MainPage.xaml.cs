@@ -49,8 +49,8 @@ namespace Abacus
         private static string StrNarrSubtract(int intLarge, int intSmall)
         {
             string strTemp;
-            strTemp = "(Can't subtract " + intSmall + " from " + Convert.ToString(intLarge + intSmall);
-            strTemp += "\n so add " + (10 - intSmall) + " and minus 1 from the left column)";
+            strTemp = " - can't subtract " + intSmall + " from " + Convert.ToString(intLarge + intSmall);
+            strTemp += ", so add " + (10 - intSmall) + " and minus 1 from the left column. ";
             return strTemp;
         }
 
@@ -349,8 +349,8 @@ namespace Abacus
                     {
                         if (pArrLarge[i - j] < 0)
                         {
-                            strPause = strPause + "\n...subtracting 1 from the left column has made that column less than 0,\n"
-                                                + "...so we need to subtract another 1 from the next left column";
+                            strPause = strPause + "...subtracting 1 from the left column has made that column less than 0, "
+                                                + "so we need to subtract another 1 from the next left column";
                             pArrLarge[i - j] = 9;
                             pArrLarge[i - (j + 1)] = pArrLarge[i - (j + 1)] - 1;
                         }
@@ -364,7 +364,7 @@ namespace Abacus
                 // Show each iteration, right to left.
                 if (boolSmallIsZero == false)
                 {
-                    DisplayTextBox.Text += ($"\nMinus the " + pArrSmall[i] + " from the #" + (17 - i) + " column\n");
+                    DisplayTextBox.Text += ($" ...Minus the " + pArrSmall[i] + " from the #" + (17 - i) + " column");
                     DisplayTextBox.Text += (strPause);
                     strPause = ""; //fixed bug
                     // Introduce a delay....
@@ -599,11 +599,11 @@ namespace Abacus
 
                     //adding the product back into the displayed number on Soroban
                     dblToDisplay += dblProduct * dblTens * dblShifter;  
-                    ShowValueOnSoroban(long.Parse(dblToDisplay.ToString()));  // seems to fail here when doing : 234 x 12
+                    ShowValueOnSoroban((long)dblToDisplay);  // seems to fail here when doing : 234 x 12
                 }
                 DisplayTextBox.Text += "Clear the end of multiplicand (" + dblMultiplicandDigit + ")... ";
                 dblToDisplay -= (dblMultiplicandDigit * dbl10ToPower(t + 2) * dblShifter);
-                ShowValueOnSoroban(long.Parse(dblToDisplay.ToString()));
+                ShowValueOnSoroban((long)dblToDisplay);
                 t++;
             }
             DisplayTextBox.Text += "\nRemove multiplier, leaves final result: " + (multiplier * multiplicand);
