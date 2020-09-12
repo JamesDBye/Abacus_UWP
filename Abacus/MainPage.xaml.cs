@@ -68,7 +68,7 @@ namespace Abacus
         {
             //declare variables
             string strMaxInput = pValue.ToString();
-            int[] arrNumsLarge = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            int[] arrNumsLarge = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             Ellipse H1, H2, E1, E2, E3, E4, E5;
             TextBlock TB;
 
@@ -76,12 +76,12 @@ namespace Abacus
             // The array represents each column of the soroban.
             for (int i = 0; i < strMaxInput.Length; i++)
             {
-                arrNumsLarge[i + (12 - strMaxInput.Length)] = int.Parse(strMaxInput.Substring(i, 1));
+                arrNumsLarge[i + (17 - strMaxInput.Length)] = int.Parse(strMaxInput.Substring(i, 1));
             }
 
             //Loop through each column, left to left
 
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 17; i++)
             {
                 //H - Heaven bead, E - Earth bead
                 //FindName allows you to identify a control by it's name, so you can then programmatically refer to it.
