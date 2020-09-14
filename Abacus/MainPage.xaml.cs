@@ -549,35 +549,35 @@ namespace Abacus
 
             int multiplicandStartPos = (multiplier.ToString() + multiplicand.ToString()).Length;
 
-            ContentDialog msgLargest = new ContentDialog()
-            {
-                Title = "Demonstration",
-                Content = Narratives.GetXMLNarrs("//All_Text_Strings/Soroban_Text_Strings/MultiplyTwoLongs/Comment1"),
-                CloseButtonText = "Ok"
-            };
-            await msgLargest.ShowAsync();
+            //ContentDialog msgLargest = new ContentDialog()
+            //{
+            //    Title = "Demonstration",
+            //    Content = Narratives.GetXMLNarrs("//All_Text_Strings/Soroban_Text_Strings/MultiplyTwoLongs/Comment1"),
+            //    CloseButtonText = "Ok"
+            //};
+            //await msgLargest.ShowAsync();
 
-            DisplayTextBox.Text = "In our example " + multiplier + " goes to the left and " + multiplicand + " starts " +  multiplicandStartPos 
-                                + " to the left of the rightmost bar. To begin with it looks like as above.\n";
+            //DisplayTextBox.Text = "In our example " + multiplier + " goes to the left and " + multiplicand + " starts " +  multiplicandStartPos 
+            //                    + " to the left of the rightmost bar. To begin with it looks like as above.\n";
 
-            long initialDisplay = long.Parse(multiplier.ToString().PadRight((16 - multiplicandStartPos), '0') + multiplicand.ToString().PadRight((1 + multiplicandStartPos), '0'));
+            long initialDisplay = long.Parse(multiplier.ToString().PadRight((11 - multiplicandStartPos), '0') + multiplicand.ToString().PadRight((1 + multiplicandStartPos), '0'));
             ShowValueOnSoroban(initialDisplay);
 
             int intLengthOfMultiplier = multiplier.ToString().Length;
-            double dblToDisplay = double.Parse(initialDisplay.ToString());
+            double dblToDisplay = (double)initialDisplay;
             double dblProduct = 0;
             double dblShifter = dbl10ToPower(intLengthOfMultiplier - 2);
 
-            DisplayTextBox.Text += Narratives.GetXMLNarrs("//All_Text_Strings/Soroban_Text_Strings/MultiplyTwoLongs/Comment2");
+            //extra debug
+            //DisplayTextBox.Text = "(long) initialDisplay = " + initialDisplay.ToString() + ", dblToDisplay = " + dblToDisplay.ToString();
+
+            //DisplayTextBox.Text += Narratives.GetXMLNarrs("//All_Text_Strings/Soroban_Text_Strings/MultiplyTwoLongs/Comment2");
 
             //main logic, loop - backwards through each digit of multiplicand
             //uses doubles rather than longs because at some points we have to mutiply results by 0.1
             int t = 1;  // t gets bigger, while i below gets smaller
             for (int i = multiplicand.ToString().Length; i > 0; i--)
             {
-                //first time around, clear the displaybox text.
-                //if (t ==1) {DisplayTextBox.Text = "";}
-
                 //single digit of the multipliand ***
                 double dblMultiplicandDigit = double.Parse((multiplicand.ToString()).Substring((i - 1), 1));
 
@@ -588,26 +588,24 @@ namespace Abacus
                     double dblMultiplerDigit = double.Parse(multiplier.ToString().Substring(j, 1));
                     double dblTens = dbl10ToPower(t - j);
                     dblProduct = dblMultiplerDigit * dblMultiplicandDigit;
-                    DisplayTextBox.Text += "Add " + dblProduct + " (" + dblMultiplerDigit + " x " + dblMultiplicandDigit + ") to the right... ";
-                    ContentDialog msgPause = new ContentDialog()
-                    {
-                        Title = "Demonstration",
-                        Content = "Hit return.",
-                        CloseButtonText = "Ok"
-                    };
-                    await msgPause.ShowAsync();
+                    DisplayTextBox.Text += "\nAdd " + dblProduct + " (" + dblMultiplerDigit + " x " + dblMultiplicandDigit + ") to the right... ";
+                    MessageDialog msgPausej = new MessageDialog("Hit return to continue.");
+                    await msgPausej.ShowAsync();
 
                     //adding the product back into the displayed number on Soroban
                     dblToDisplay += dblProduct * dblTens * dblShifter;  
-                    ShowValueOnSoroban((long)dblToDisplay);  // seems to fail here when doing : 234 x 12
+                    ShowValueOnSoroban((long)dblToDisplay);  
                 }
-                DisplayTextBox.Text += "Clear the end of multiplicand (" + dblMultiplicandDigit + ")... ";
+                DisplayTextBox.Text += "\nClear the end of multiplicand (" + dblMultiplicandDigit + ")... ";
                 dblToDisplay -= (dblMultiplicandDigit * dbl10ToPower(t + 2) * dblShifter);
+                MessageDialog msgPausei = new MessageDialog("Hit return to continue.");
+                await msgPausei.ShowAsync();
                 ShowValueOnSoroban((long)dblToDisplay);
                 t++;
             }
-            DisplayTextBox.Text += "\nRemove multiplier, leaves final result: " + (multiplier * multiplicand);
-            ShowValueOnSoroban(multiplier * multiplicand); 
+            DisplayTextBox.Text += "\nRemove multiplier, leaves final result:\n";
+            //ShowValueOnSoroban(multiplier * multiplicand);
+            //DisplayTextBox.Text += "\n" + (multiplier * multiplicand);
         }
         private async void Multiply_Click(object sender, RoutedEventArgs e)
         {
@@ -636,13 +634,13 @@ namespace Abacus
                 string introString = Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Multiplication/Introduction");
                 introString += Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Multiplication/Terminology");
 
-                ContentDialog msgLargest = new ContentDialog()
-                {
-                    Title = "Demonstration",
-                    Content = introString,
-                    CloseButtonText = "Ok"
-                };
-                await msgLargest.ShowAsync();
+                //ContentDialog msgLargest = new ContentDialog()
+                //{
+                //    Title = "Demonstration",
+                //    Content = introString,
+                //    CloseButtonText = "Ok"
+                //};
+                //await msgLargest.ShowAsync();
                 MultiplyTwoLongs(longAdd1, longAdd2);
             }
             catch (FormatException fEx)
