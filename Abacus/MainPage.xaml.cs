@@ -537,41 +537,35 @@ namespace Abacus
             }
         }
 
-        public static double dbl10ToPower(int pPower)
+        public static decimal dcl10ToPower(int pPower)
         {
-            var v1 = Math.Pow(10, pPower);
-            double result = double.Parse(v1.ToString());
+            //var v1 = Math.Pow(10, pPower);
+            decimal result = (decimal)Math.Pow(10, pPower);
             return result;
         }
 
         public async Task MultiplyTwoLongs(long multiplicand, long multiplier)
         {
-
             int multiplicandStartPos = (multiplier.ToString() + multiplicand.ToString()).Length;
+            ContentDialog msgLargest = new ContentDialog()
+            {
+                Title = "Demonstration",
+                Content = Narratives.GetXMLNarrs("//All_Text_Strings/Soroban_Text_Strings/MultiplyTwoLongs/Comment1"),
+                CloseButtonText = "Ok"
+            };
+            await msgLargest.ShowAsync();
 
-            //ContentDialog msgLargest = new ContentDialog()
-            //{
-            //    Title = "Demonstration",
-            //    Content = Narratives.GetXMLNarrs("//All_Text_Strings/Soroban_Text_Strings/MultiplyTwoLongs/Comment1"),
-            //    CloseButtonText = "Ok"
-            //};
-            //await msgLargest.ShowAsync();
+            DisplayTextBox.Text = "In our example " + multiplier + " goes to the left and " + multiplicand + " starts " + multiplicandStartPos
+                                + " to the left of the rightmost bar. To begin with it looks like as above.\n";
 
-            //DisplayTextBox.Text = "In our example " + multiplier + " goes to the left and " + multiplicand + " starts " +  multiplicandStartPos 
-            //                    + " to the left of the rightmost bar. To begin with it looks like as above.\n";
-
-            long initialDisplay = long.Parse(multiplier.ToString().PadRight((11 - multiplicandStartPos), '0') + multiplicand.ToString().PadRight((1 + multiplicandStartPos), '0'));
+            long initialDisplay = long.Parse(multiplier.ToString().PadRight((16 - multiplicandStartPos), '0') + multiplicand.ToString().PadRight((1 + multiplicandStartPos), '0'));
             ShowValueOnSoroban(initialDisplay);
 
             int intLengthOfMultiplier = multiplier.ToString().Length;
-            double dblToDisplay = (double)initialDisplay;
-            double dblProduct = 0;
-            double dblShifter = dbl10ToPower(intLengthOfMultiplier - 2);
-
-            //extra debug
-            //DisplayTextBox.Text = "(long) initialDisplay = " + initialDisplay.ToString() + ", dblToDisplay = " + dblToDisplay.ToString();
-
-            //DisplayTextBox.Text += Narratives.GetXMLNarrs("//All_Text_Strings/Soroban_Text_Strings/MultiplyTwoLongs/Comment2");
+            decimal dclToDisplay = (decimal)initialDisplay;
+            long lngToDisplay = 0;
+            decimal dclShifter = dcl10ToPower(intLengthOfMultiplier - 2);
+            DisplayTextBox.Text += Narratives.GetXMLNarrs("//All_Text_Strings/Soroban_Text_Strings/MultiplyTwoLongs/Comment2");
 
             //main logic, loop - backwards through each digit of multiplicand
             //uses doubles rather than longs because at some points we have to mutiply results by 0.1
@@ -579,33 +573,36 @@ namespace Abacus
             for (int i = multiplicand.ToString().Length; i > 0; i--)
             {
                 //single digit of the multipliand ***
-                double dblMultiplicandDigit = double.Parse((multiplicand.ToString()).Substring((i - 1), 1));
+                decimal dclMultiplicandDigit = decimal.Parse((multiplicand.ToString()).Substring((i - 1), 1));
 
                 //2nd loop - forwards through each digit of the multiplier 
                 for (int j = 0; j < multiplier.ToString().Length; j++)
                 {
                     //single digit of the multiplier ***
-                    double dblMultiplerDigit = double.Parse(multiplier.ToString().Substring(j, 1));
-                    double dblTens = dbl10ToPower(t - j);
-                    dblProduct = dblMultiplerDigit * dblMultiplicandDigit;
-                    DisplayTextBox.Text += "\nAdd " + dblProduct + " (" + dblMultiplerDigit + " x " + dblMultiplicandDigit + ") to the right... ";
-                    MessageDialog msgPausej = new MessageDialog("Hit return to continue.");
+                    decimal dclMultiplerDigit = decimal.Parse(multiplier.ToString().Substring(j, 1));
+                    decimal dclTens = dcl10ToPower(t - j);
+                    decimal dclProduct = dclMultiplerDigit * dclMultiplicandDigit;
+                    DisplayTextBox.Text += "add " + dclProduct + " (" + dclMultiplerDigit + " x " + dclMultiplicandDigit + ") to the right... ";
+
+                    MessageDialog msgPausej = new MessageDialog("Hit return");
                     await msgPausej.ShowAsync();
 
                     //adding the product back into the displayed number on Soroban
-                    dblToDisplay += dblProduct * dblTens * dblShifter;  
-                    ShowValueOnSoroban((long)dblToDisplay);  
+                    dclToDisplay += dclProduct * dclTens * dclShifter;
+                    lngToDisplay = (long)dclToDisplay;
+                    ShowValueOnSoroban(lngToDisplay);  
                 }
-                DisplayTextBox.Text += "\nClear the end of multiplicand (" + dblMultiplicandDigit + ")... ";
-                dblToDisplay -= (dblMultiplicandDigit * dbl10ToPower(t + 2) * dblShifter);
-                MessageDialog msgPausei = new MessageDialog("Hit return to continue.");
+                DisplayTextBox.Text += "\nClear the end of multiplicand (" + dclMultiplicandDigit + ")... ";
+                dclToDisplay -= (dclMultiplicandDigit * dcl10ToPower(t + 2) * dclShifter);
+
+                MessageDialog msgPausei = new MessageDialog("Hit return");
                 await msgPausei.ShowAsync();
-                ShowValueOnSoroban((long)dblToDisplay);
+
+                lngToDisplay = (long)dclToDisplay;
+                ShowValueOnSoroban(lngToDisplay);
                 t++;
             }
-            DisplayTextBox.Text += "\nRemove multiplier, leaves final result:\n";
-            //ShowValueOnSoroban(multiplier * multiplicand);
-            //DisplayTextBox.Text += "\n" + (multiplier * multiplicand);
+            DisplayTextBox.Text += "\nRemove multiplier, leaves final result: " + (multiplier * multiplicand);
         }
         private async void Multiply_Click(object sender, RoutedEventArgs e)
         {
