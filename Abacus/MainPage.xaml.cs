@@ -564,7 +564,7 @@ namespace Abacus
             int intLengthOfMultiplier = multiplier.ToString().Length;
             decimal dclToDisplay = (decimal)initialDisplay;
             long lngToDisplay = 0;
-            decimal dclShifter = dcl10ToPower(intLengthOfMultiplier - 2);
+            decimal dclShifter = dcl10ToPower(intLengthOfMultiplier - 2) *10;
             DisplayTextBox.Text += Narratives.GetXMLNarrs("//All_Text_Strings/Soroban_Text_Strings/MultiplyTwoLongs/Comment2");
 
             //main logic, loop - backwards through each digit of multiplicand
@@ -588,12 +588,12 @@ namespace Abacus
                     await msgPausej.ShowAsync();
 
                     //adding the product back into the displayed number on Soroban
-                    dclToDisplay += dclProduct * dclTens * dclShifter;
+                    dclToDisplay += (dclProduct * dclTens * dclShifter)/10;
                     lngToDisplay = (long)dclToDisplay;
                     ShowValueOnSoroban(lngToDisplay);  
                 }
                 DisplayTextBox.Text += "\nClear the end of multiplicand (" + dclMultiplicandDigit + ")... ";
-                dclToDisplay -= (dclMultiplicandDigit * dcl10ToPower(t + 2) * dclShifter);
+                dclToDisplay -= (dclMultiplicandDigit * dcl10ToPower(t + 2) * dclShifter)/10;
 
                 MessageDialog msgPausei = new MessageDialog("Hit return");
                 await msgPausei.ShowAsync();
