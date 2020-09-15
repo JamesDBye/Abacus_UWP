@@ -562,6 +562,7 @@ namespace Abacus
             ShowValueOnSoroban(initialDisplay);
 
             int intLengthOfMultiplier = multiplier.ToString().Length;
+            int targetColumn = intLengthOfMultiplier + 1;
             decimal dclToDisplay = (decimal)initialDisplay;
             long lngToDisplay = 0;
             decimal dclShifter = dcl10ToPower(intLengthOfMultiplier - 2);
@@ -572,7 +573,7 @@ namespace Abacus
             int t = 1;  // t gets bigger, while i below gets smaller
             for (int i = multiplicand.ToString().Length; i > 0; i--)
             {
-                //single digit of the multipliand ***
+                //single digit of the multiplicand ***
                 decimal dclMultiplicandDigit = decimal.Parse((multiplicand.ToString()).Substring((i - 1), 1));
 
                 //2nd loop - forwards through each digit of the multiplier 
@@ -582,7 +583,8 @@ namespace Abacus
                     decimal dclMultiplerDigit = decimal.Parse(multiplier.ToString().Substring(j, 1));
                     decimal dclTens = dcl10ToPower(t - j);
                     decimal dclProduct = dclMultiplerDigit * dclMultiplicandDigit;
-                    DisplayTextBox.Text += "add " + dclProduct + " (" + dclMultiplerDigit + " x " + dclMultiplicandDigit + ") to the right... ";
+                    DisplayTextBox.Text += " ...add " + dclProduct.ToString().PadLeft(2,'0') + " (" + dclMultiplerDigit + " x " + dclMultiplicandDigit 
+                                        + ") to the columns #" + targetColumn + " and #" + (targetColumn-1) + ",";
 
                     MessageDialog msgPausej = new MessageDialog("Hit return");
                     await msgPausej.ShowAsync();
@@ -590,9 +592,11 @@ namespace Abacus
                     //adding the product back into the displayed number on Soroban
                     dclToDisplay += dclProduct * dclTens * dclShifter;
                     lngToDisplay = (long)dclToDisplay;
-                    ShowValueOnSoroban(lngToDisplay);  
+                    ShowValueOnSoroban(lngToDisplay);
+                    targetColumn--;
                 }
-                DisplayTextBox.Text += "\nClear the end of multiplicand (" + dclMultiplicandDigit + ")... ";
+                DisplayTextBox.Text += "\nClear the end of multiplicand (" + dclMultiplicandDigit + ")... \n";
+                targetColumn = intLengthOfMultiplier + 1 + t;
                 dclToDisplay -= (dclMultiplicandDigit * dcl10ToPower(t + 2) * dclShifter);
 
                 MessageDialog msgPausei = new MessageDialog("Hit return");
@@ -602,6 +606,14 @@ namespace Abacus
                 ShowValueOnSoroban(lngToDisplay);
                 t++;
             }
+            ContentDialog msgEnd = new ContentDialog()
+            {
+                Title = "Finished",
+                Content = "All individual products are now summed together.",
+                CloseButtonText = "Ok"
+            };
+            await msgEnd.ShowAsync();
+
             DisplayTextBox.Text += "\nRemove multiplier, leaves final result: " + (multiplier * multiplicand);
         }
         private async void Multiply_Click(object sender, RoutedEventArgs e)
@@ -631,13 +643,13 @@ namespace Abacus
                 string introString = Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Multiplication/Introduction");
                 introString += Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Multiplication/Terminology");
 
-                //ContentDialog msgLargest = new ContentDialog()
-                //{
-                //    Title = "Demonstration",
-                //    Content = introString,
-                //    CloseButtonText = "Ok"
-                //};
-                //await msgLargest.ShowAsync();
+                ContentDialog msgLargest = new ContentDialog()
+                {
+                    Title = "Demonstration",
+                    Content = introString,
+                    CloseButtonText = "Ok"
+                };
+                await msgLargest.ShowAsync();
                 MultiplyTwoLongs(longAdd1, longAdd2);
             }
             catch (FormatException fEx)
