@@ -537,10 +537,10 @@ namespace Abacus
             }
         }
 
-        public static decimal dcl10ToPower(int pPower)
+        public static long lng10ToPower(int pPower)
         {
             //var v1 = Math.Pow(10, pPower);
-            decimal result = (decimal)Math.Pow(10, pPower);
+            long result = (long)Math.Pow(10, pPower);
             return result;
         }
 
@@ -562,9 +562,8 @@ namespace Abacus
             ShowValueOnSoroban(initialDisplay);
 
             int intLengthOfMultiplier = multiplier.ToString().Length;
-            decimal dclToDisplay = (decimal)initialDisplay;
-            long lngToDisplay = 0;
-            decimal dclShifter = dcl10ToPower(intLengthOfMultiplier - 2) *10;
+            long lngToDisplay = initialDisplay;
+            long lngShifter = (intLengthOfMultiplier == 1) ?  1 : lng10ToPower(intLengthOfMultiplier - 2) *10;
             DisplayTextBox.Text += Narratives.GetXMLNarrs("//All_Text_Strings/Soroban_Text_Strings/MultiplyTwoLongs/Comment2");
 
             //main logic, loop - backwards through each digit of multiplicand
@@ -573,32 +572,30 @@ namespace Abacus
             for (int i = multiplicand.ToString().Length; i > 0; i--)
             {
                 //single digit of the multipliand ***
-                decimal dclMultiplicandDigit = decimal.Parse((multiplicand.ToString()).Substring((i - 1), 1));
+                long lngMultiplicandDigit = long.Parse((multiplicand.ToString()).Substring((i - 1), 1));
 
                 //2nd loop - forwards through each digit of the multiplier 
                 for (int j = 0; j < multiplier.ToString().Length; j++)
                 {
                     //single digit of the multiplier ***
-                    decimal dclMultiplerDigit = decimal.Parse(multiplier.ToString().Substring(j, 1));
-                    decimal dclTens = dcl10ToPower(t - j);
-                    decimal dclProduct = dclMultiplerDigit * dclMultiplicandDigit;
-                    DisplayTextBox.Text += "add " + dclProduct + " (" + dclMultiplerDigit + " x " + dclMultiplicandDigit + ") to the right... ";
+                    long lngMultiplerDigit = long.Parse(multiplier.ToString().Substring(j, 1));
+                    long lngTens = lng10ToPower(t - j);
+                    long lngProduct = lngMultiplerDigit * lngMultiplicandDigit;
+                    DisplayTextBox.Text += "add " + lngProduct + " (" + lngMultiplerDigit + " x " + lngMultiplicandDigit + ") to the right... ";
 
                     MessageDialog msgPausej = new MessageDialog("Hit return");
                     await msgPausej.ShowAsync();
 
                     //adding the product back into the displayed number on Soroban
-                    dclToDisplay += (dclProduct * dclTens * dclShifter)/10;
-                    lngToDisplay = (long)dclToDisplay;
+                    lngToDisplay += (lngProduct * lngTens * lngShifter)/10;
                     ShowValueOnSoroban(lngToDisplay);  
                 }
-                DisplayTextBox.Text += "\nClear the end of multiplicand (" + dclMultiplicandDigit + ")... ";
-                dclToDisplay -= (dclMultiplicandDigit * dcl10ToPower(t + 2) * dclShifter)/10;
+                DisplayTextBox.Text += "\nClear the end of multiplicand (" + lngMultiplicandDigit + ")... ";
+                lngToDisplay -= (lngMultiplicandDigit * lng10ToPower(t + 2) * lngShifter)/10;
 
                 MessageDialog msgPausei = new MessageDialog("Hit return");
                 await msgPausei.ShowAsync();
 
-                lngToDisplay = (long)dclToDisplay;
                 ShowValueOnSoroban(lngToDisplay);
                 t++;
             }
