@@ -564,6 +564,8 @@ namespace Abacus
             int intLengthOfMultiplier = multiplier.ToString().Length;
             long lngToDisplay = initialDisplay;
             long lngShifter = (intLengthOfMultiplier == 1) ?  1 : lng10ToPower(intLengthOfMultiplier - 2) *10;
+            int targetColumn = intLengthOfMultiplier + 1;
+
             DisplayTextBox.Text += Narratives.GetXMLNarrs("//All_Text_Strings/Soroban_Text_Strings/MultiplyTwoLongs/Comment2");
 
             //main logic, loop - backwards through each digit of multiplicand
@@ -581,7 +583,8 @@ namespace Abacus
                     long lngMultiplerDigit = long.Parse(multiplier.ToString().Substring(j, 1));
                     long lngTens = lng10ToPower(t - j);
                     long lngProduct = lngMultiplerDigit * lngMultiplicandDigit;
-                    DisplayTextBox.Text += "add " + lngProduct + " (" + lngMultiplerDigit + " x " + lngMultiplicandDigit + ") to the right... ";
+                    DisplayTextBox.Text += " ...add " + lngProduct.ToString().PadLeft(2,'0') + " (" + lngMultiplerDigit + " x " + lngMultiplicandDigit 
+                                        + ") to the columns #" + targetColumn + " and #" + (targetColumn-1) + ",";
 
                     MessageDialog msgPausej = new MessageDialog("Hit return");
                     await msgPausej.ShowAsync();
@@ -589,16 +592,25 @@ namespace Abacus
                     //adding the product back into the displayed number on Soroban
                     lngToDisplay += (lngProduct * lngTens * lngShifter)/10;
                     ShowValueOnSoroban(lngToDisplay);  
+                    targetColumn--;
                 }
-                DisplayTextBox.Text += "\nClear the end of multiplicand (" + lngMultiplicandDigit + ")... ";
+                DisplayTextBox.Text += "\nClear the end of multiplicand (" + lngMultiplicandDigit + ")...\n";
+                targetColumn = intLengthOfMultiplier + 1 + t;
                 lngToDisplay -= (lngMultiplicandDigit * lng10ToPower(t + 2) * lngShifter)/10;
-
                 MessageDialog msgPausei = new MessageDialog("Hit return");
                 await msgPausei.ShowAsync();
 
                 ShowValueOnSoroban(lngToDisplay);
                 t++;
             }
+            ContentDialog msgEnd = new ContentDialog()
+            {
+                Title = "Finished",
+                Content = "All individual products are now summed together.",
+                CloseButtonText = "Ok"
+            };
+            await msgEnd.ShowAsync();
+
             DisplayTextBox.Text += "\nRemove multiplier, leaves final result: " + (multiplier * multiplicand);
         }
         private async void Multiply_Click(object sender, RoutedEventArgs e)
@@ -628,13 +640,13 @@ namespace Abacus
                 string introString = Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Multiplication/Introduction");
                 introString += Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Multiplication/Terminology");
 
-                //ContentDialog msgLargest = new ContentDialog()
-                //{
-                //    Title = "Demonstration",
-                //    Content = introString,
-                //    CloseButtonText = "Ok"
-                //};
-                //await msgLargest.ShowAsync();
+                ContentDialog msgLargest = new ContentDialog()
+                {
+                    Title = "Demonstration",
+                    Content = introString,
+                    CloseButtonText = "Ok"
+                };
+                await msgLargest.ShowAsync();
                 MultiplyTwoLongs(longAdd1, longAdd2);
             }
             catch (FormatException fEx)
