@@ -66,82 +66,94 @@ namespace Abacus
 
         public void ShowValueOnSoroban(long pValue)
         {
-            //declare variables
-            string strMaxInput = pValue.ToString();
-            int[] arrNumsLarge = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-            Ellipse H1, H2, E1, E2, E3, E4, E5;
-            TextBlock TB;
-
-            // Put each digit of pValue into the arrNumsLarge array.
-            // The array represents each column of the soroban.
-            for (int i = 0; i < strMaxInput.Length; i++)
+            try
             {
-                arrNumsLarge[i + (17 - strMaxInput.Length)] = int.Parse(strMaxInput.Substring(i, 1));
+                if (pValue > 99999999999999999)
+                {
+                    throw new FormatException("Not enough columns to display answer. ");
+                }
+                //declare variables
+                string strMaxInput = pValue.ToString();
+                int[] arrNumsLarge = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+                Ellipse H1, H2, E1, E2, E3, E4, E5;
+                TextBlock TB;
+
+                // Put each digit of pValue into the arrNumsLarge array.
+                // The array represents each column of the soroban.
+                for (int i = 0; i < strMaxInput.Length; i++)
+                {
+                    arrNumsLarge[i + (17 - strMaxInput.Length)] = int.Parse(strMaxInput.Substring(i, 1));
+                }
+
+                //Loop through each column, left to left
+
+                for (int i = 0; i < 17; i++)
+                {
+                    //H - Heaven bead, E - Earth bead
+                    //FindName allows you to identify a control by it's name, so you can then programmatically refer to it.
+                    H1 = (Ellipse)this.FindName("R7C" + i.ToString());
+                    H2 = (Ellipse)this.FindName("R6C" + i.ToString());
+
+                    E1 = (Ellipse)this.FindName("R5C" + i.ToString());
+                    E2 = (Ellipse)this.FindName("R4C" + i.ToString());
+                    E3 = (Ellipse)this.FindName("R3C" + i.ToString());
+                    E4 = (Ellipse)this.FindName("R2C" + i.ToString());
+                    E5 = (Ellipse)this.FindName("R1C" + i.ToString());
+
+                    TB = (TextBlock)this.FindName("LC" + i.ToString());
+
+                    // Heaven beads
+                    if (arrNumsLarge[i] >= 5)
+                    {
+                        H1.Visibility = Visibility.Collapsed;
+                        H2.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        H1.Visibility = Visibility.Visible;
+                        H2.Visibility = Visibility.Collapsed;
+                    }
+                    // Earth beads
+                    switch (arrNumsLarge[i])
+                    {
+                        case 0:
+                        case 5:
+                            E2.Visibility = E3.Visibility = E4.Visibility = E5.Visibility = Visibility.Visible;
+                            E1.Visibility = Visibility.Collapsed;
+                            break;
+                        case 1:
+                        case 6:
+                            E1.Visibility = E3.Visibility = E4.Visibility = E5.Visibility = Visibility.Visible;
+                            E2.Visibility = Visibility.Collapsed;
+                            break;
+                        case 2:
+                        case 7:
+                            E1.Visibility = E2.Visibility = E4.Visibility = E5.Visibility = Visibility.Visible;
+                            E3.Visibility = Visibility.Collapsed;
+                            break;
+                        case 3:
+                        case 8:
+                            E1.Visibility = E2.Visibility = E3.Visibility = E5.Visibility = Visibility.Visible;
+                            E4.Visibility = Visibility.Collapsed;
+                            break;
+                        case 4:
+                        case 9:
+                            E1.Visibility = E2.Visibility = E3.Visibility = E4.Visibility = Visibility.Visible;
+                            E5.Visibility = Visibility.Collapsed;
+                            break;
+                        default:
+                            E1.Visibility = E2.Visibility = E3.Visibility = E4.Visibility = E5.Visibility = Visibility.Collapsed;
+                            break;
+                    }
+                    //Display the number below the earth beads
+                    TB.Text = arrNumsLarge[i].ToString();
+                }//loop ends
             }
-
-            //Loop through each column, left to left
-
-            for (int i = 0; i < 17; i++)
+            catch (FormatException fEx)
             {
-                //H - Heaven bead, E - Earth bead
-                //FindName allows you to identify a control by it's name, so you can then programmatically refer to it.
-                H1 = (Ellipse)this.FindName("R7C" + i.ToString());
-                H2 = (Ellipse)this.FindName("R6C" + i.ToString());
-
-                E1 = (Ellipse)this.FindName("R5C" + i.ToString());
-                E2 = (Ellipse)this.FindName("R4C" + i.ToString());
-                E3 = (Ellipse)this.FindName("R3C" + i.ToString());
-                E4 = (Ellipse)this.FindName("R2C" + i.ToString());
-                E5 = (Ellipse)this.FindName("R1C" + i.ToString());
-
-                TB = (TextBlock)this.FindName("LC" + i.ToString());
-
-                // Heaven beads
-                if (arrNumsLarge[i] >= 5)
-                {
-                    H1.Visibility = Visibility.Collapsed;
-                    H2.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    H1.Visibility = Visibility.Visible;
-                    H2.Visibility = Visibility.Collapsed;
-                }
-                // Earth beads
-                switch (arrNumsLarge[i])
-                {
-                    case 0:
-                    case 5:
-                        E2.Visibility = E3.Visibility = E4.Visibility = E5.Visibility = Visibility.Visible;
-                        E1.Visibility = Visibility.Collapsed;
-                        break;
-                    case 1:
-                    case 6:
-                        E1.Visibility = E3.Visibility = E4.Visibility = E5.Visibility = Visibility.Visible;
-                        E2.Visibility = Visibility.Collapsed;
-                        break;
-                    case 2:
-                    case 7:
-                        E1.Visibility = E2.Visibility = E4.Visibility = E5.Visibility = Visibility.Visible;
-                        E3.Visibility = Visibility.Collapsed;
-                        break;
-                    case 3:
-                    case 8:
-                        E1.Visibility = E2.Visibility = E3.Visibility = E5.Visibility = Visibility.Visible;
-                        E4.Visibility = Visibility.Collapsed;
-                        break;
-                    case 4:
-                    case 9:
-                        E1.Visibility = E2.Visibility = E3.Visibility = E4.Visibility = Visibility.Visible;
-                        E5.Visibility = Visibility.Collapsed;
-                        break;
-                    default:
-                        E1.Visibility = E2.Visibility = E3.Visibility = E4.Visibility = E5.Visibility = Visibility.Collapsed;
-                        break;
-                }
-                //Display the number below the earth beads
-                TB.Text = arrNumsLarge[i].ToString();
-            }//loop ends
+                DisplayTextBox.Text = "ShowValueOnSoroban error: " + fEx.Message + pValue.ToString();
+                throw new Exception("Deliberate exception thrown");
+            }
         }
 
         //Read an integer into an array, eg. 12345 --> {0,0,0,0,0,0,0,0,0,0,0,0,1,2,3,4,5}
@@ -544,16 +556,19 @@ namespace Abacus
             return result;
         }
 
-        public async Task MultiplyTwoLongs(long multiplicand, long multiplier)
+        public async Task MultiplyTwoLongs(long multiplicand, long multiplier, bool showPopUps)
         {
             int multiplicandStartPos = (multiplier.ToString() + multiplicand.ToString()).Length;
-            ContentDialog msgLargest = new ContentDialog()
+            if (showPopUps)
             {
-                Title = "Demonstration",
-                Content = Narratives.GetXMLNarrs("//All_Text_Strings/Soroban_Text_Strings/MultiplyTwoLongs/Comment1"),
-                CloseButtonText = "Ok"
-            };
-            await msgLargest.ShowAsync();
+                ContentDialog msgLargest = new ContentDialog()
+                {
+                    Title = "Demonstration",
+                    Content = Narratives.GetXMLNarrs("//All_Text_Strings/Soroban_Text_Strings/MultiplyTwoLongs/Comment1"),
+                    CloseButtonText = "Ok"
+                };
+                await msgLargest.ShowAsync(); 
+            }
 
             DisplayTextBox.Text = "In our example " + multiplier + " goes to the left and " + multiplicand + " starts " + multiplicandStartPos
                                 + " to the left of the rightmost bar. To begin with it looks like as above.\n";
@@ -566,6 +581,7 @@ namespace Abacus
             long lngToDisplay = 0;
             decimal dclShifter = dcl10ToPower(intLengthOfMultiplier - 2);
             DisplayTextBox.Text += Narratives.GetXMLNarrs("//All_Text_Strings/Soroban_Text_Strings/MultiplyTwoLongs/Comment2");
+            int targetColumn = intLengthOfMultiplier + 1;
 
             //main logic, loop - backwards through each digit of multiplicand
             //uses doubles rather than longs because at some points we have to mutiply results by 0.1
@@ -582,26 +598,46 @@ namespace Abacus
                     decimal dclMultiplerDigit = decimal.Parse(multiplier.ToString().Substring(j, 1));
                     decimal dclTens = dcl10ToPower(t - j);
                     decimal dclProduct = dclMultiplerDigit * dclMultiplicandDigit;
-                    DisplayTextBox.Text += "add " + dclProduct + " (" + dclMultiplerDigit + " x " + dclMultiplicandDigit + ") to the right... ";
+                    DisplayTextBox.Text += " ...add " + dclProduct.ToString().PadLeft(2, '0') + " (" + dclMultiplerDigit + " x " + dclMultiplicandDigit
+                                        + ") to the columns #" + targetColumn + " and #" + (targetColumn - 1) + ",";
 
-                    MessageDialog msgPausej = new MessageDialog("Hit return");
-                    await msgPausej.ShowAsync();
+                    if (showPopUps)
+                    {
+                        MessageDialog msgPausej = new MessageDialog("Hit return");
+                        await msgPausej.ShowAsync(); 
+                    }
 
                     //adding the product back into the displayed number on Soroban
                     dclToDisplay += dclProduct * dclTens * dclShifter;
                     lngToDisplay = (long)dclToDisplay;
-                    ShowValueOnSoroban(lngToDisplay);  
+                    ShowValueOnSoroban(lngToDisplay);
+                    targetColumn--;
                 }
-                DisplayTextBox.Text += "\nClear the end of multiplicand (" + dclMultiplicandDigit + ")... ";
+                DisplayTextBox.Text += "\nClear the end of multiplicand (" + dclMultiplicandDigit + ")... \n";
+                targetColumn = intLengthOfMultiplier + 1 + t;
                 dclToDisplay -= (dclMultiplicandDigit * dcl10ToPower(t + 2) * dclShifter);
-
-                MessageDialog msgPausei = new MessageDialog("Hit return");
-                await msgPausei.ShowAsync();
+                if (showPopUps)
+                {
+	                MessageDialog msgPausei = new MessageDialog("Hit return");
+	                await msgPausei.ShowAsync();
+				}
 
                 lngToDisplay = (long)dclToDisplay;
                 ShowValueOnSoroban(lngToDisplay);
                 t++;
             }
+            if (showPopUps)
+            {
+                ContentDialog msgEnd = new ContentDialog()
+                {
+                    Title = "Finished",
+                    Content = "All individual products are now summed together.",
+                    CloseButtonText = "Ok"
+                };
+                await msgEnd.ShowAsync(); 
+            }
+            //deduct the multipler from far left of the Soroban display
+            ShowValueOnSoroban(lngToDisplay-(long.Parse(multiplier.ToString().PadRight(17,'0'))));
             DisplayTextBox.Text += "\nRemove multiplier, leaves final result: " + (multiplier * multiplicand);
         }
         private async void Multiply_Click(object sender, RoutedEventArgs e)
@@ -624,30 +660,37 @@ namespace Abacus
                 {
                     throw new FormatException("Not enough columns to display answer");
                 }
-
+                if ((InputNumber1.Text.Length + 1 + (2 * InputNumber2.Text.Length) > 17) && (InputNumber2.Text.Length > InputNumber1.Text.Length))
+                {
+                    throw new FormatException("Not enough columns to calculate answer. Try switching #1 and #2 around.");
+                }
+                if (InputNumber1.Text.Length + 1 + (2 * InputNumber2.Text.Length) > 17)
+                {
+                    throw new FormatException("Not enough columns to calculate answer");
+                }
                 //Determine the larger input value
                 ShowValueOnSoroban(0);
                 DisplayTextBox.Text = "";
                 string introString = Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Multiplication/Introduction");
                 introString += Narratives.GetXMLNarrs("//All_Text_Strings/Main_Text_strings/Multiplication/Terminology");
 
-                //ContentDialog msgLargest = new ContentDialog()
-                //{
-                //    Title = "Demonstration",
-                //    Content = introString,
-                //    CloseButtonText = "Ok"
-                //};
-                //await msgLargest.ShowAsync();
-                MultiplyTwoLongs(longAdd1, longAdd2);
+                ContentDialog msgLargest = new ContentDialog()
+                {
+                    Title = "Demonstration",
+                    Content = introString,
+                    CloseButtonText = "Ok"
+                };
+                await msgLargest.ShowAsync();
+                MultiplyTwoLongs(longAdd1, longAdd2, true);
             }
             catch (FormatException fEx)
             {
                 DisplayTextBox.Text = "Error: " + fEx.Message;
             }
-            catch (Exception)
-            {
-                DisplayTextBox.Text = "Input needs to be an integer between zero and 999999999999\n";
-            }
+            //catch (Exception)
+            //{
+            //    DisplayTextBox.Text = "Input needs to be an integer between zero and 999999999999\n";
+            //}
 
         }
     }
