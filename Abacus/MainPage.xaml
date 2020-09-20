@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid RequestedTheme="Default">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
@@ -214,9 +214,10 @@
         <TextBlock Grid.Column="19" HorizontalAlignment="Center" Text="10s" TextWrapping="Wrap" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="18" HorizontalAlignment="Center" Text="100s" TextWrapping="Wrap" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="17" HorizontalAlignment="Center" Text="1000s" TextWrapping="Wrap" VerticalAlignment="Center"/>
-        <TextBlock Grid.Column="16" HorizontalAlignment="Center" Text="10,000s" TextWrapping="Wrap" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="14" HorizontalAlignment="Center" Text="Mills" TextWrapping="Wrap" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="11" HorizontalAlignment="Center" Text="Bills" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="8"  HorizontalAlignment="Center" Text="Trills" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="5"  HorizontalAlignment="Left" Text="Quadrillion" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,0,0,0"/>
         <TextBlock Grid.Column="20" Grid.Row="3" HorizontalAlignment="Center" Text="#1" TextWrapping="Wrap" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="19" Grid.Row="3" HorizontalAlignment="Center" Text="#2" TextWrapping="Wrap" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="18" Grid.Row="3" HorizontalAlignment="Center" Text="#3" TextWrapping="Wrap" VerticalAlignment="Center"/>

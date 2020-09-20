@@ -548,7 +548,7 @@ namespace Abacus
         public async Task MultiplyTwoLongs(long multiplicand, long multiplier, bool showPopUps)
         {
             int multiplicandStartPos = (multiplier.ToString() + multiplicand.ToString()).Length;
-            ContinueButton.Visibility = Visibility.Visible;
+            
             if (showPopUps)
             {
                 ContentDialog msgLargest = new ContentDialog()
@@ -565,6 +565,7 @@ namespace Abacus
 
             long initialDisplay = long.Parse(multiplier.ToString().PadRight((16 - multiplicandStartPos), '0') + multiplicand.ToString().PadRight((1 + multiplicandStartPos), '0'));
             ShowValueOnSoroban(initialDisplay);
+            ContinueButton.Visibility = Visibility.Visible;
 
             int intLengthOfMultiplier = multiplier.ToString().Length;
             decimal dclToDisplay = (decimal)initialDisplay;
