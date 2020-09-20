@@ -178,15 +178,11 @@ namespace Abacus
             int[] pArrSmall = LongToArray(longSmall);
 
             ShowValueOnSoroban(longLarge);
-            
-            ContentDialog msgLargest = new ContentDialog()
-            {
-                Title = "Demonstration",
-                Content = "Hit return",
-                CloseButtonText = "Ok"
-            }; 
-            await msgLargest.ShowAsync();
-            
+
+            // try to wait for the button click
+            clickWaitTask = new TaskCompletionSource<bool>();
+            await clickWaitTask.Task;
+
             for (int i = 0; i < 17; i++)
             {
                 //whether or not to display this calculation
@@ -269,14 +265,9 @@ namespace Abacus
                     DisplayTextBox.Text += strPause;
                     strPause = ""; // added to fix bug, caused incorrectly messages to appear.
 
-                    // Introduce a delay....
-                    ContentDialog msg = new ContentDialog()
-                    {
-                        Title = "Demonstration",
-                        Content = "Hit return.",
-                        CloseButtonText = "Ok"
-                    };
-                    await msg.ShowAsync();
+                    // try to wait for the button click
+                    clickWaitTask = new TaskCompletionSource<bool>();
+                    await clickWaitTask.Task;
                     ShowValueOnSoroban(ArrayToLong(pArrLarge)); 
                 }
             }
@@ -291,13 +282,9 @@ namespace Abacus
 
             ShowValueOnSoroban(longLarge);
 
-            ContentDialog msgLargest = new ContentDialog()
-            {
-                Title = "Demonstration",
-                Content = "Hit return.",
-                CloseButtonText = "Ok"
-            };
-            await msgLargest.ShowAsync();
+            // try to wait for the button click
+            clickWaitTask = new TaskCompletionSource<bool>();
+            await clickWaitTask.Task;
 
             for (int i = 0; i < 17; i++)
             {
@@ -379,14 +366,11 @@ namespace Abacus
                     DisplayTextBox.Text += ($" ...Minus the " + pArrSmall[i] + " from the #" + (17 - i) + " column");
                     DisplayTextBox.Text += (strPause);
                     strPause = ""; //fixed bug
-                    // Introduce a delay....
-                    ContentDialog msg = new ContentDialog()
-                    {
-                        Title = "Demonstration",
-                        Content = "Hit return.",
-                        CloseButtonText = "Ok"
-                    };
-                    await msg.ShowAsync();
+
+                    // try to wait for the button click
+                    clickWaitTask = new TaskCompletionSource<bool>();
+                    await clickWaitTask.Task;
+
                     ShowValueOnSoroban(ArrayToLong(pArrLarge));
                 }
             }
@@ -603,8 +587,9 @@ namespace Abacus
 
                     if (showPopUps)
                     {
-                        MessageDialog msgPausej = new MessageDialog("Hit return");
-                        await msgPausej.ShowAsync(); 
+                        // try to wait for the button click
+                        clickWaitTask = new TaskCompletionSource<bool>();
+                        await clickWaitTask.Task;
                     }
 
                     //adding the product back into the displayed number on Soroban
@@ -618,9 +603,10 @@ namespace Abacus
                 dclToDisplay -= (dclMultiplicandDigit * dcl10ToPower(t + 2) * dclShifter);
                 if (showPopUps)
                 {
-	                MessageDialog msgPausei = new MessageDialog("Hit return");
-	                await msgPausei.ShowAsync();
-				}
+                    // try to wait for the button click
+                    clickWaitTask = new TaskCompletionSource<bool>();
+                    await clickWaitTask.Task;
+                }
 
                 lngToDisplay = (long)dclToDisplay;
                 ShowValueOnSoroban(lngToDisplay);
@@ -692,6 +678,13 @@ namespace Abacus
             //    DisplayTextBox.Text = "Input needs to be an integer between zero and 999999999999\n";
             //}
 
+        }
+
+        private TaskCompletionSource<bool> clickWaitTask;
+
+        private void ContinueButton_Click(object sender, RoutedEventArgs e)
+        {
+            clickWaitTask.TrySetResult(true);
         }
     }
 
