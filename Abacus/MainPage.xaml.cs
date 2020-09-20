@@ -176,6 +176,7 @@ namespace Abacus
             string strPause = "";
             int[] pArrLarge = LongToArray(longLarge);
             int[] pArrSmall = LongToArray(longSmall);
+            ContinueButton.Visibility = Visibility.Visible;
 
             ShowValueOnSoroban(longLarge);
 
@@ -272,6 +273,7 @@ namespace Abacus
                 }
             }
             DisplayTextBox.Text += ($"\nFinal answer: " + ArrayToLong(pArrLarge));
+            ContinueButton.Visibility = Visibility.Collapsed;
         }
 
         public async Task SubtractTwoLongs(long longLarge, long longSmall, bool isNegative)
@@ -279,6 +281,7 @@ namespace Abacus
             string strPause = "";
             int[] pArrLarge = LongToArray(longLarge);
             int[] pArrSmall = LongToArray(longSmall);
+            ContinueButton.Visibility = Visibility.Visible;
 
             ShowValueOnSoroban(longLarge);
 
@@ -363,7 +366,7 @@ namespace Abacus
                 // Show each iteration, right to left.
                 if (boolSmallIsZero == false)
                 {
-                    DisplayTextBox.Text += ($" ...Minus the " + pArrSmall[i] + " from the #" + (17 - i) + " column");
+                    DisplayTextBox.Text += ($" \n...Minus the " + pArrSmall[i] + " from the #" + (17 - i) + " column");
                     DisplayTextBox.Text += (strPause);
                     strPause = ""; //fixed bug
 
@@ -375,6 +378,7 @@ namespace Abacus
                 }
             }
             DisplayTextBox.Text += ($"\nFinal answer: "  + (isNegative ? "-" : "+") + ArrayToLong(pArrLarge)); //notice the shorthand if-then-else on isNegative
+            ContinueButton.Visibility = Visibility.Collapsed;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -443,6 +447,7 @@ namespace Abacus
                 };
                 await msgLargest.ShowAsync();
 
+                DisplayTextBox.Text = Math.Max(longAdd1, longAdd2).ToString() + " is displayed on the Soroban above.";
                 AddTwoLongsAsync(Math.Max(longAdd1, longAdd2), Math.Min(longAdd1, longAdd2));
             }
             catch (FormatException fEx)
@@ -543,6 +548,7 @@ namespace Abacus
         public async Task MultiplyTwoLongs(long multiplicand, long multiplier, bool showPopUps)
         {
             int multiplicandStartPos = (multiplier.ToString() + multiplicand.ToString()).Length;
+            ContinueButton.Visibility = Visibility.Visible;
             if (showPopUps)
             {
                 ContentDialog msgLargest = new ContentDialog()
@@ -625,6 +631,7 @@ namespace Abacus
             //deduct the multipler from far left of the Soroban display
             ShowValueOnSoroban(lngToDisplay-(long.Parse(multiplier.ToString().PadRight(17,'0'))));
             DisplayTextBox.Text += "\nRemove multiplier, leaves final result: " + (multiplier * multiplicand);
+            ContinueButton.Visibility = Visibility.Collapsed;
         }
         private async void Multiply_Click(object sender, RoutedEventArgs e)
         {
